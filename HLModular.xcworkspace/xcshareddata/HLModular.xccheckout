@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C93E755E-666A-4E30-A0B9-947F8BEE3329</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HLModular</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CFEBFBA1A2CEADAF4AC5886D3252F5A73A9F775A</key>
+		<string>github.com:mathcamp/prototypes.git</string>
+		<key>e9be9b72-b3e6-4f37-9d6e-35f2130026b9</key>
+		<string>svn+ssh://dakara.local/Library/Subversion/Repository/projects</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iphone/HLModular/HLModular.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>CFEBFBA1A2CEADAF4AC5886D3252F5A73A9F775A</key>
+		<string>../../..gocode/src/github.com/mathcamp/prototypes/</string>
+		<key>e9be9b72-b3e6-4f37-9d6e-35f2130026b9</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>e9be9b72-b3e6-4f37-9d6e-35f2130026b9</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>e9be9b72-b3e6-4f37-9d6e-35f2130026b9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>projects</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CFEBFBA1A2CEADAF4AC5886D3252F5A73A9F775A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>prototypes</string>
+		</dict>
+	</array>
+</dict>
+</plist>

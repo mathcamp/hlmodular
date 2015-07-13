@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "e9be9b72-b3e6-4f37-9d6e-35f2130026b9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "e9be9b72-b3e6-4f37-9d6e-35f2130026b9" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CFEBFBA1A2CEADAF4AC5886D3252F5A73A9F775A" : 0,
+    "e9be9b72-b3e6-4f37-9d6e-35f2130026b9" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DFA02E90-51B9-46B7-9AE9-201A2DD7597A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CFEBFBA1A2CEADAF4AC5886D3252F5A73A9F775A" : "projectsgocode\/src\/github.com\/mathcamp\/prototypes",
+    "e9be9b72-b3e6-4f37-9d6e-35f2130026b9" : "projects"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "HLModular",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "iphone\/HLModular\/HLModular.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mathcamp\/prototypes.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CFEBFBA1A2CEADAF4AC5886D3252F5A73A9F775A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/dakara.local\/Library\/Subversion\/Repository\/projects",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "e9be9b72-b3e6-4f37-9d6e-35f2130026b9"
+    }
+  ]
+}
