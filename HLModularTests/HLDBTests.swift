@@ -356,11 +356,36 @@ class HLDBTests: XCTestCase {
     })
   }
   
-  func testPerformanceExample() {
-    // This is an example of a performance test case.
+  func testInsertPerf() {
     self.measureBlock() {
-      // Put the code you want to measure the time of here.
+      let finishedExpectation = self.expectationWithDescription("finished")
+
+      let fileName = "dbfile"
+      let db = HLDB.DB(fileName: fileName)
+      
+      let tableName = "InsertablePerfTable"
+      let table = self.simpleTable(db, name: tableName)
+      table.create()
+      
+      // now insert an item
+      var rows: [HLDB.Table.Row] = []
+      for idx in 0..<100 {
+        rows.append(HLDB.Table.Row(fields: ["id" : "monkeyid",
+                                            "v"  : "monkeyvalue",
+                                            "ts" : idx]))
+      }
+  
+      table.insert(rows).onSuccess { result in
+        table.drop()
+        finishedExpectation.fulfill()
+      }
+      
+      // Loop until the expectation is fulfilled
+      self.waitForExpectationsWithTimeout(10, { error in
+        XCTAssertNil(error, "Error")
+      })
     }
+
   }
   
 }

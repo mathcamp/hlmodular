@@ -123,7 +123,7 @@ public class HLDB {
         db, rollback in
         
         for query in queries {
-          NSLog("Running query=\(query.query) argCount=\(query.args.count) args=\(query.args)")
+          //NSLog("Running query=\(query.query) argCount=\(query.args.count) args=\(query.args)")
           if !db.executeUpdate(query.query, withArgumentsInArray:query.args) {
             rollback.initialize(true)
             println("DB Query \(self.fileName) failed: \(db.lastErrorMessage())")
@@ -349,7 +349,7 @@ public class HLDB {
     }
     
     public func create() {
-      NSLog("Create table query string =\(createTableQueryString)")
+      //NSLog("Create table query string =\(createTableQueryString)")
       db.updateWithoutTx(createTableQueryString)
     }
     
