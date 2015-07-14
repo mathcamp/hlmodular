@@ -23,10 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    runner.run(FetchPhotosJob())
 //    runner.run(FetchAssetsJob())
     
-    var cdb = ClientDB()
+  /*  var cdb = ClientDB()
     cdb.prepare()
     cdb.writePhoto()
-  //  cdb.readPhoto()
+    cdb.readPhoto() */
     
     return true
   }

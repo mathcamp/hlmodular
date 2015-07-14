@@ -7,21 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1991777B1B50A53C00019511 /* FCBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 199177791B50A53C00019511 /* FCBox.m */; };
+		195F5C3B1B54469100AA0A01 /* HLDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C3A1B54469100AA0A01 /* HLDBTests.swift */; };
+		195F5C3C1B548E7200AA0A01 /* DBTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199177871B50CF6700019511 /* DBTable.swift */; };
+		195F5C3E1B548EAC00AA0A01 /* libPods-HLModular.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 195F5C3D1B548EAC00AA0A01 /* libPods-HLModular.a */; };
+		195F5C441B54902B00AA0A01 /* ExecutionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C3F1B54902B00AA0A01 /* ExecutionContext.swift */; };
+		195F5C451B54902B00AA0A01 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C401B54902B00AA0A01 /* Future.swift */; };
+		195F5C461B54902B00AA0A01 /* FutureUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C411B54902B00AA0A01 /* FutureUtils.swift */; };
+		195F5C471B54902B00AA0A01 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C421B54902B00AA0A01 /* Promise.swift */; };
+		195F5C481B54902B00AA0A01 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C431B54902B00AA0A01 /* Queue.swift */; };
+		195F5C491B54902F00AA0A01 /* ExecutionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C3F1B54902B00AA0A01 /* ExecutionContext.swift */; };
+		195F5C4A1B54902F00AA0A01 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C401B54902B00AA0A01 /* Future.swift */; };
+		195F5C4B1B54902F00AA0A01 /* FutureUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C411B54902B00AA0A01 /* FutureUtils.swift */; };
+		195F5C4C1B54902F00AA0A01 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C421B54902B00AA0A01 /* Promise.swift */; };
+		195F5C4D1B54902F00AA0A01 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C431B54902B00AA0A01 /* Queue.swift */; };
 		199177881B50CF6700019511 /* DBTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199177871B50CF6700019511 /* DBTable.swift */; };
-		199177921B5190B700019511 /* ExecutionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1991778D1B5190B700019511 /* ExecutionContext.swift */; };
-		199177931B5190B700019511 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1991778E1B5190B700019511 /* Future.swift */; };
-		199177941B5190B700019511 /* FutureUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1991778F1B5190B700019511 /* FutureUtils.swift */; };
-		199177951B5190B700019511 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199177901B5190B700019511 /* Promise.swift */; };
-		199177961B5190B700019511 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199177911B5190B700019511 /* Queue.swift */; };
-		19D12A421B50954000868C0E /* ClientDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D12A411B50954000868C0E /* ClientDB.swift */; };
-		19D12A461B50954C00868C0E /* FCPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D12A441B50954C00868C0E /* FCPhoto.m */; };
 		19E0BB601B4763C100967E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB5F1B4763C100967E9F /* AppDelegate.swift */; };
 		19E0BB621B4763C100967E9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB611B4763C100967E9F /* ViewController.swift */; };
 		19E0BB651B4763C100967E9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19E0BB631B4763C100967E9F /* Main.storyboard */; };
 		19E0BB671B4763C100967E9F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19E0BB661B4763C100967E9F /* Images.xcassets */; };
 		19E0BB6A1B4763C100967E9F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19E0BB681B4763C100967E9F /* LaunchScreen.xib */; };
-		19E0BB761B4763C200967E9F /* HLModularTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB751B4763C200967E9F /* HLModularTests.swift */; };
 		19E0BB801B4763E300967E9F /* HLModular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB7F1B4763E300967E9F /* HLModular.swift */; };
 		19E0BB821B478E4400967E9F /* PhotosModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB811B478E4400967E9F /* PhotosModule.swift */; };
 		19E0BB841B47952F00967E9F /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E0BB831B47952F00967E9F /* Photos.framework */; };
@@ -42,19 +46,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		199177791B50A53C00019511 /* FCBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FCBox.m; path = ../../../gocode/src/github.com/mathcamp/prototypes/apps/Roll/Roll/Models/FCModel/FCBox.m; sourceTree = "<group>"; };
-		1991777A1B50A53C00019511 /* FCBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FCBox.h; path = ../../../gocode/src/github.com/mathcamp/prototypes/apps/Roll/Roll/Models/FCModel/FCBox.h; sourceTree = "<group>"; };
+		195F5C3A1B54469100AA0A01 /* HLDBTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HLDBTests.swift; sourceTree = "<group>"; };
+		195F5C3D1B548EAC00AA0A01 /* libPods-HLModular.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPods-HLModular.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		195F5C3F1B54902B00AA0A01 /* ExecutionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutionContext.swift; sourceTree = "<group>"; };
+		195F5C401B54902B00AA0A01 /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
+		195F5C411B54902B00AA0A01 /* FutureUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FutureUtils.swift; sourceTree = "<group>"; };
+		195F5C421B54902B00AA0A01 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		195F5C431B54902B00AA0A01 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		1991777F1B50B04400019511 /* RollPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollPhoto.swift; sourceTree = "<group>"; };
 		199177871B50CF6700019511 /* DBTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBTable.swift; sourceTree = "<group>"; };
-		1991778D1B5190B700019511 /* ExecutionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExecutionContext.swift; path = ../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/BrightFutures/BrightFutures/ExecutionContext.swift; sourceTree = "<group>"; };
-		1991778E1B5190B700019511 /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Future.swift; path = ../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/BrightFutures/BrightFutures/Future.swift; sourceTree = "<group>"; };
-		1991778F1B5190B700019511 /* FutureUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FutureUtils.swift; path = ../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/BrightFutures/BrightFutures/FutureUtils.swift; sourceTree = "<group>"; };
-		199177901B5190B700019511 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Promise.swift; path = ../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/BrightFutures/BrightFutures/Promise.swift; sourceTree = "<group>"; };
-		199177911B5190B700019511 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = ../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/BrightFutures/BrightFutures/Queue.swift; sourceTree = "<group>"; };
-		19D12A411B50954000868C0E /* ClientDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClientDB.swift; path = ../../../gocode/src/github.com/mathcamp/prototypes/apps/Roll/Roll/ClientDB.swift; sourceTree = "<group>"; };
 		19D12A431B50954B00868C0E /* HLModular-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HLModular-Bridging-Header.h"; sourceTree = "<group>"; };
-		19D12A441B50954C00868C0E /* FCPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FCPhoto.m; path = ../../../gocode/src/github.com/mathcamp/prototypes/apps/Roll/Roll/Models/FCModel/FCPhoto.m; sourceTree = "<group>"; };
-		19D12A451B50954C00868C0E /* FCPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FCPhoto.h; path = ../../../gocode/src/github.com/mathcamp/prototypes/apps/Roll/Roll/Models/FCModel/FCPhoto.h; sourceTree = "<group>"; };
 		19E0BB5A1B4763C100967E9F /* HLModular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HLModular.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19E0BB5E1B4763C100967E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19E0BB5F1B4763C100967E9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				195F5C3E1B548EAC00AA0A01 /* libPods-HLModular.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,24 +101,19 @@
 		1991778C1B5190A600019511 /* BrightFutures */ = {
 			isa = PBXGroup;
 			children = (
-				1991778D1B5190B700019511 /* ExecutionContext.swift */,
-				1991778E1B5190B700019511 /* Future.swift */,
-				1991778F1B5190B700019511 /* FutureUtils.swift */,
-				199177901B5190B700019511 /* Promise.swift */,
-				199177911B5190B700019511 /* Queue.swift */,
+				195F5C3F1B54902B00AA0A01 /* ExecutionContext.swift */,
+				195F5C401B54902B00AA0A01 /* Future.swift */,
+				195F5C411B54902B00AA0A01 /* FutureUtils.swift */,
+				195F5C421B54902B00AA0A01 /* Promise.swift */,
+				195F5C431B54902B00AA0A01 /* Queue.swift */,
 			);
-			name = BrightFutures;
+			path = BrightFutures;
 			sourceTree = "<group>";
 		};
 		19D12A401B50952400868C0E /* ClientDB */ = {
 			isa = PBXGroup;
 			children = (
 				1991778C1B5190A600019511 /* BrightFutures */,
-				199177791B50A53C00019511 /* FCBox.m */,
-				1991777A1B50A53C00019511 /* FCBox.h */,
-				19D12A441B50954C00868C0E /* FCPhoto.m */,
-				19D12A451B50954C00868C0E /* FCPhoto.h */,
-				19D12A411B50954000868C0E /* ClientDB.swift */,
 				199177871B50CF6700019511 /* DBTable.swift */,
 				19D12A431B50954B00868C0E /* HLModular-Bridging-Header.h */,
 				1991777F1B50B04400019511 /* RollPhoto.swift */,
@@ -175,6 +172,7 @@
 		19E0BB721B4763C200967E9F /* HLModularTests */ = {
 			isa = PBXGroup;
 			children = (
+				195F5C3A1B54469100AA0A01 /* HLDBTests.swift */,
 				19E0BB751B4763C200967E9F /* HLModularTests.swift */,
 				19E0BB731B4763C200967E9F /* Supporting Files */,
 			);
@@ -192,6 +190,7 @@
 		5058E0312F26D452A482B052 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				195F5C3D1B548EAC00AA0A01 /* libPods-HLModular.a */,
 				32BD80413EAA6E4BAB293923 /* libPods-HLModular.a */,
 			);
 			name = Frameworks;
@@ -343,21 +342,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				19E0BB861B47A4E100967E9F /* FaceDetector.swift in Sources */,
-				199177931B5190B700019511 /* Future.swift in Sources */,
-				199177951B5190B700019511 /* Promise.swift in Sources */,
 				199177881B50CF6700019511 /* DBTable.swift in Sources */,
 				19E0BB821B478E4400967E9F /* PhotosModule.swift in Sources */,
 				19E0BB881B47A51E00967E9F /* FaceDetectorModule.swift in Sources */,
+				195F5C481B54902B00AA0A01 /* Queue.swift in Sources */,
 				19E0BB801B4763E300967E9F /* HLModular.swift in Sources */,
+				195F5C461B54902B00AA0A01 /* FutureUtils.swift in Sources */,
 				19E0BB621B4763C100967E9F /* ViewController.swift in Sources */,
 				19E0BB8A1B47AB9B00967E9F /* AssetsModule.swift in Sources */,
-				1991777B1B50A53C00019511 /* FCBox.m in Sources */,
-				19D12A421B50954000868C0E /* ClientDB.swift in Sources */,
-				199177961B5190B700019511 /* Queue.swift in Sources */,
-				199177941B5190B700019511 /* FutureUtils.swift in Sources */,
+				195F5C441B54902B00AA0A01 /* ExecutionContext.swift in Sources */,
+				195F5C451B54902B00AA0A01 /* Future.swift in Sources */,
 				19E0BB601B4763C100967E9F /* AppDelegate.swift in Sources */,
-				199177921B5190B700019511 /* ExecutionContext.swift in Sources */,
-				19D12A461B50954C00868C0E /* FCPhoto.m in Sources */,
+				195F5C471B54902B00AA0A01 /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,7 +361,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19E0BB761B4763C200967E9F /* HLModularTests.swift in Sources */,
+				195F5C4B1B54902F00AA0A01 /* FutureUtils.swift in Sources */,
+				195F5C4D1B54902F00AA0A01 /* Queue.swift in Sources */,
+				195F5C3C1B548E7200AA0A01 /* DBTable.swift in Sources */,
+				195F5C491B54902F00AA0A01 /* ExecutionContext.swift in Sources */,
+				195F5C4A1B54902F00AA0A01 /* Future.swift in Sources */,
+				195F5C3B1B54469100AA0A01 /* HLDBTests.swift in Sources */,
+				195F5C4C1B54902F00AA0A01 /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,9 +517,16 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode\\ 6.2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"\"${PODS_ROOT}/Headers/Public\"",
+				);
 				INFOPLIST_FILE = HLModularTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PODS_ROOT = "${SRCROOT}/Pods";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HLModular/HLModular-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HLModular.app/HLModular";
 			};
 			name = Debug;
@@ -532,7 +541,9 @@
 				);
 				INFOPLIST_FILE = HLModularTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PODS_ROOT = "${SRCROOT}/Pods";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HLModular/HLModular-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HLModular.app/HLModular";
 			};
 			name = Release;

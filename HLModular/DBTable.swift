@@ -8,6 +8,52 @@
 
 import Foundation
 
+public func ==(lhs: HLDB.Table.Row, rhs: HLDB.Table.Row) -> Bool {
+  var leftKeys = lhs.fields.keys.array
+  var rightKeys = rhs.fields.keys.array
+  if leftKeys.count != rightKeys.count { return false }
+  leftKeys.sort { $0 < $1 }
+  rightKeys.sort { $0 < $1 }
+  
+  for (idx, k) in enumerate(leftKeys) {
+    if rightKeys[idx] != k { return false }
+    
+    var valuesMatch = false
+    if let leftVal = lhs.fields[k] as? String {
+      if let rightVal = rhs.fields[k] as? String {
+        if leftVal == rightVal {
+          valuesMatch = true
+        }
+      }
+    }
+    if let leftVal = lhs.fields[k] as? Int {
+      if let rightVal = rhs.fields[k] as? Int {
+        if leftVal == rightVal {
+          valuesMatch = true
+        }
+      }
+    }
+    if let leftVal = lhs.fields[k] as? Double {
+      if let rightVal = rhs.fields[k] as? Double {
+        if leftVal == rightVal {
+          valuesMatch = true
+        }
+      }
+    }
+    if let leftVal = lhs.fields[k] as? Bool {
+      if let rightVal = rhs.fields[k] as? Bool {
+        if leftVal == rightVal {
+          valuesMatch = true
+        }
+      }
+    }
+    
+    if !valuesMatch { return false }
+  }
+  
+  return true
+}
+
 public class HLDB {
 
   public class DB {
@@ -21,13 +67,32 @@ public class HLDB {
       case Error(Int, String)
     }
     
-    public init(fileName: String) {
-      self.fileName = fileName
-      let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-      self.dbPath = documentsFolder.stringByAppendingPathComponent(self.fileName)
+    public struct QueryArgs {
+      let query: String
+      let args: NSArray
     }
     
-    func getQueue() -> FMDatabaseQueue? {
+    public init(fileName: String) {
+      self.fileName = fileName
+      self.dbPath = DB.pathForDBFile(fileName)
+    }
+    
+    public class func pathForDBFile(fileName: String) -> String {
+      let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+      return documentsFolder.stringByAppendingPathComponent(fileName)
+    }
+    
+    class func deleteDB(fileName: String) -> NSError? {
+      let dbPath = DB.pathForDBFile(fileName)
+      var error: NSError? = nil
+      let fm = NSFileManager.defaultManager()
+      if fm.fileExistsAtPath(dbPath) {
+        fm.removeItemAtPath(dbPath, error: &error)
+      }
+      return error
+    }
+    
+    public func getQueue() -> FMDatabaseQueue? {
       if queue == nil {
         queue = FMDatabaseQueue(path: self.dbPath)
       }
@@ -52,16 +117,19 @@ public class HLDB {
     }
     
     // do a query that does not return result using a transaction and rollback upon failure
-    public func update(query: String, args:NSArray = NSArray()) -> Future<Result> {
+    public func update(queries: [QueryArgs]) -> Future<Result> {
       let p = Promise<Result>()
       getQueue()?.inTransaction() {
         db, rollback in
         
-        if !db.executeUpdate(query, withArgumentsInArray:args) {
-          rollback.initialize(true)
-          println("DB Query \(self.fileName) failed: \(db.lastErrorMessage())")
-          p.success(Result.Error(Int(db.lastErrorCode()), db.lastErrorMessage()))
-          return
+        for query in queries {
+          NSLog("Running query=\(query.query) argCount=\(query.args.count) args=\(query.args)")
+          if !db.executeUpdate(query.query, withArgumentsInArray:query.args) {
+            rollback.initialize(true)
+            println("DB Query \(self.fileName) failed: \(db.lastErrorMessage())")
+            p.success(Result.Error(Int(db.lastErrorCode()), db.lastErrorMessage()))
+            return
+          }
         }
         p.success(Result.Success)
       }
@@ -180,7 +248,7 @@ public class HLDB {
     }
   }
   
-  public class DBTable {
+  public class Table {
     public enum Type: String {
       case Integer = "INT"
       case Real = "REAL"
@@ -210,7 +278,7 @@ public class HLDB {
       let defaultValue: Default
     }
     
-    public struct Row {
+    public struct Row: Equatable {
       let fields: [String: AnyObject] = [:]
     }
     
@@ -220,6 +288,14 @@ public class HLDB {
     public let db: DB
     
     lazy var fieldNames: [String] = self.definition.keys.array
+    lazy var fieldNamesPlaceholderStr: String = {
+      var holders: [String] = []
+      for field in self.fieldNames {
+        holders.append("?")
+      }
+      return ",".join(holders)
+    }()
+    
     lazy var fieldNamesStr: String = ",".join(self.fieldNames)
     
     public init(db: DB, name: String, fields:[Field]) {
@@ -235,8 +311,9 @@ public class HLDB {
           foundPrimaryKey = true
         }
       }
-      let packedDataFieldName = "packeddata"
-      definition[packedDataFieldName] = Field(name: packedDataFieldName, type: .Blob, index: .Private, defaultValue: .NonNull)
+      // TODO: Add packed data later
+      // let packedDataFieldName = "packeddata"
+      // definition[packedDataFieldName] = Field(name: packedDataFieldName, type: .Blob, index: .Private, defaultValue: .NonNull)
       
       // add a primary key if there wasn't one
       if !foundPrimaryKey {
@@ -268,10 +345,11 @@ public class HLDB {
         fields.append("\(field.name) \(fieldType)\(uniqueStr)\(fieldDefault)")
       }
       let fieldsStr = ",".join(fields)
-      return "CREATE TABLE \(name) (fieldsStr);"
+      return "CREATE TABLE \(name) (\(fieldsStr));"
     }
     
     public func create() {
+      NSLog("Create table query string =\(createTableQueryString)")
       db.updateWithoutTx(createTableQueryString)
     }
     
@@ -279,7 +357,7 @@ public class HLDB {
       db.updateWithoutTx("DROP TABLE \(name)")
     }
     
-    func rowFields(r: Row) -> String {
+    func rowFields(r: Row) -> [String] {
       // TODO: implement packed
       var fieldStrArr = [String]()
       for (fieldName, field) in definition {
@@ -329,45 +407,73 @@ public class HLDB {
                 break
               }
             }
-            fieldStrArr.append("\"\(value)\"")
+            fieldStrArr.append("\(value)")
             break
           case .Blob:
             // TODO: implement blobs
-            fieldStrArr.append("\"NOBLOBS\"")
+            fieldStrArr.append("NOBLOBS")
             break
         }
       }
-      return ",".join(fieldStrArr)
+      return fieldStrArr
     }
     
     public func insert(rows: [Row]) -> Future<DB.Result> {
-      let query = "INSERT INTO \(name) (\(fieldNamesStr)) values (?)"
-      var args = [String]()
+      let query = "INSERT INTO \(name) (\(fieldNamesStr)) values (\(fieldNamesPlaceholderStr))"
+      var queries: [DB.QueryArgs] = []
       for row in rows {
-        let rowFieldsStr = rowFields(row)
-        args.append("(\(rowFieldsStr))")
+        let args = rowFields(row)
+        queries.append(DB.QueryArgs(query: query, args: args))
       }
-      return db.update(query, args:args)
+      return db.update(queries)
     }
     
     public func update(rows: [Row]) -> Future<DB.Result> {
-      // TODO: implement this!
-      var query = "INSERT INTO \(name) (\(fieldNamesStr)) values (?)"
-      var args = [String]()
+      var queries: [DB.QueryArgs] = []
       for row in rows {
-        let rowFieldsStr = rowFields(row)
-        args.append("(\(rowFieldsStr))")
+        if let primaryKeyVal = row.fields[primaryKey] as? String {
+          var pairs: [String] = []
+          var args: [AnyObject] = []
+          for (k, v) in row.fields{
+            if k == primaryKey { continue }
+            pairs.append("\(k) = ?")
+            args.append(v)
+          }
+          let pairsStr = ", ".join(pairs)
+          let query = "UPDATE \(name) SET \(pairsStr) WHERE \(primaryKey) = ?"
+          args.append(primaryKeyVal)
+          queries.append(DB.QueryArgs(query: query, args: args))
+        } else {
+          let p = Promise<DB.Result>()
+          p.success(.Error(-1, "Cannot update without primary key!"))
+          return p.future
+        }
       }
-      return db.update(query, args:args)
+      return db.update(queries)
     }
     
-    public func select(whereStr: String) -> Future<DB.Result> {
+    public func select(whereStr: String = "") -> Future<DB.Result> {
       var finalWhereString = whereStr
       if countElements(finalWhereString) > 0 {
         finalWhereString = " WHERE \(whereStr)"
       }
       let query = "SELECT * FROM \(name)\(whereStr)"
       return db.query(query)
+    }
+    
+    public func delete(rows: [Row]) -> Future<DB.Result> {
+      var queries: [DB.QueryArgs] = []
+      for row in rows {
+        if let primaryKeyValue: AnyObject = row.fields[primaryKey] {
+          let query = "DELETE FROM \(name) WHERE \(primaryKey) = ?"
+        queries.append(DB.QueryArgs(query: query, args: [primaryKeyValue]))
+        } else {
+          let p = Promise<DB.Result>()
+          p.success(.Error(-1, "Cannot update without primary key!"))
+          return p.future
+        }
+      }
+      return db.update(queries)
     }
   }
 }
