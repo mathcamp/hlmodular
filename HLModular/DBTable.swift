@@ -157,42 +157,6 @@ public class HLDB {
       
       return p.future
     }
-    
-    func testDatabaseQueue() {
-      
-      
-      
-      queue?.inTransaction() {
-        db, rollback in
-        
-        for i in 0 ..< 5 {
-          if !db.executeUpdate("insert into test (a) values (?)", withArgumentsInArray: ["Row \(i)"]) {
-            println("insert \(i) failure: \(db.lastErrorMessage())")
-            rollback.initialize(true)
-            return
-          }
-        }
-      }
-      
-      // let's try inserting rows, but deliberately fail half way and make sure it rolls back correctly
-      
-      queue?.inTransaction() {
-        db, rollback in
-        
-        for i in 5 ..< 10 {
-          if !db.executeUpdate("insert into test (a) values (?)", withArgumentsInArray: ["Row \(i)"]) {
-            println("insert \(i) failure: \(db.lastErrorMessage())")
-            rollback.initialize(true)
-            return
-          }
-          
-          if (i == 7) {
-            rollback.initialize(true)
-          }
-        }
-      }
-    }
-    
   }
 
   public class Entity {
@@ -206,6 +170,47 @@ public class HLDB {
       // override this in subclass
       return [:]
     }
+    
+    public func toJSON() -> String {
+      return serializeToJSON(toFields())
+    }
+    
+    func serializeToJSON(obj: AnyObject) -> String {
+      var error: NSError? = nil
+      if let data = NSJSONSerialization.dataWithJSONObject(obj, options: NSJSONWritingOptions(0), error: &error) {
+        if let s = NSString(data: data, encoding: NSUTF8StringEncoding) {
+          return s
+        }
+      }
+      return ""
+    }
+    
+    func deserializeJSONFieldAsArray(fieldName: String) -> [AnyObject]? {
+      if let dict = deserializeJSONField(fieldName) as? [AnyObject] {
+        return dict
+      }
+      return nil
+    }
+    
+    func deserializeJSONFieldAsDictionary(fieldName: String) -> [String: AnyObject]? {
+      if let dict = deserializeJSONField(fieldName) as? [String: AnyObject] {
+        return dict
+      }
+      return nil
+    }
+    
+    func deserializeJSONField(fieldName: String) -> AnyObject? {
+      if let json = fields[fieldName] as? String {
+        var error: NSError? = nil
+        if let detailsData = (json as NSString).dataUsingEncoding(NSUTF8StringEncoding) {
+          if let jsonObject: AnyObject = NSJSONSerialization.JSONObjectWithData(detailsData, options: nil, error:&error) {
+            return jsonObject
+          }
+        }
+      }
+      return nil
+    }
+
     
     func boolValue(fieldName: String, defaultValue: Bool = false) -> Bool {
       var outValue = defaultValue
@@ -245,6 +250,29 @@ public class HLDB {
         outValue = v
       }
       return outValue
+    }
+
+    func arrayValue(fieldName: String, defaultValue: [AnyObject] = []) -> [AnyObject] {
+      var outValue = defaultValue
+      if let v = fields[fieldName] as? [AnyObject] {
+        outValue = v
+      }
+      return outValue
+    }
+    
+    func dictValue(fieldName: String, defaultValue: [String: AnyObject] = [:]) -> [String: AnyObject] {
+      var outValue = defaultValue
+      if let v = fields[fieldName] as? [String: AnyObject] {
+        outValue = v
+      }
+      return outValue
+    }
+    
+    func jsonArrayValue(fieldName: String, defaultValue: [AnyObject] = []) -> [AnyObject] {
+      if let array = deserializeJSONFieldAsArray(fieldName) {
+        return array
+      }
+      return defaultValue
     }
   }
   
@@ -426,6 +454,53 @@ public class HLDB {
         queries.append(DB.QueryArgs(query: query, args: args))
       }
       return db.update(queries)
+    }
+    
+/*    func insertAndUpdate(insertRows: [Row], updateRows: [Row]) -> Future<DB.Result> {
+      
+    } */
+    
+    public func upsert(rows: [Row]) -> Future<DB.Result> {
+      let p = Promise<DB.Result>()
+      
+      var idList: [String] = []
+      var placeholderList: [String] = []
+      for row in rows {
+        if let rowId = row.fields[primaryKey] as? String {
+          idList.append(rowId)
+          placeholderList.append("?")
+        }
+      }
+      let placeholderListStr = ",".join(placeholderList)
+      var foundIds: [String] = []
+      db.query("SELECT \(primaryKey) FROM \(name) WHERE \(primaryKey) in (\(placeholderListStr))", args: idList).onSuccess { result in
+       
+        switch result {
+          case .Success:
+            break
+          case .Error(let code, let message):
+            return p.success(result)
+          case .Items(let items):
+            for item in items {
+              if let v = item[self.primaryKey] as? String {
+                foundIds.append(v)
+              }
+            }
+        }
+      }
+      
+      if foundIds.count == 0 {
+        // everything should be inserted
+      } else {
+        // mixture of insert and update
+      }
+      
+      db.getQueue()?.inTransaction() {
+        db, rollback in
+
+      }
+      
+      return p.future
     }
     
     public func update(rows: [Row]) -> Future<DB.Result> {
