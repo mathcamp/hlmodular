@@ -9,47 +9,8 @@
 import UIKit
 import XCTest
 
-public let rollPhotoFields: [HLDB.Table.Field] =
-[ HLDB.Table.Field(name: "photo_id",         type: .Text, index: .Primary, defaultValue: .NonNull),
-  HLDB.Table.Field(name: "remote_asset_url", type: .Text, index: .None, defaultValue: .NonNull),
-  HLDB.Table.Field(name: "title",            type: .Text, index: .None, defaultValue: .NonNull),
-  HLDB.Table.Field(name: "subtitle",         type: .Text, index: .None, defaultValue: .NonNull),
-  HLDB.Table.Field(name: "likes",            type: .Integer, index: .None, defaultValue: .NonNull),
-  HLDB.Table.Field(name: "self_like",        type: .Integer, index: .None, defaultValue: .NonNull),
-  HLDB.Table.Field(name: "taken_at",         type: .Real, index: .None, defaultValue: .NonNull),
-  HLDB.Table.Field(name: "taken_by",         type: .Text, index: .None, defaultValue: .NonNull),
-  HLDB.Table.Field(name: "is_tip_card",      type: .Real, index: .None, defaultValue: .NonNull),
-  HLDB.Table.Field(name: "default_image",    type: .Text, index: .None, defaultValue: .NonNull) ]
-
-
-public class TestEntity: HLDB.Entity {
-  lazy public var photo_id: String         = self.stringValue("photo_id")
-  lazy public var remote_asset_url: String = self.stringValue("remote_asset_url")
-  lazy public var title: String            = self.stringValue("title")
-  lazy public var subtitle: String         = self.stringValue("subtitle")
-  lazy public var likes: Int               = self.intValue("likes")
-  lazy public var self_like: Bool          = self.boolValue("self_like")
-  lazy public var taken_at: Double         = self.doubleValue("taken_at")
-  lazy public var taken_by: String         = self.stringValue("taken_by")
-  lazy public var is_tip_card: Bool        = self.boolValue("is_tip_card")
-  lazy public var default_image: String    = self.stringValue("default_image")
-  
-  override public func toFields() -> [String: AnyObject] {
-    return ["photo_id"         : photo_id,
-            "remote_asset_url" : remote_asset_url,
-            "title"            : title,
-            "subtitle"         : subtitle,
-            "likes"            : likes,
-            "self_like"        : self_like,
-            "taken_at"         : taken_at,
-            "taken_by"         : taken_by,
-            "is_tip_card"      : is_tip_card,
-            "default_image"    : default_image ]
-  }
-}
-
-
 class HLDBEntityTests: XCTestCase {
+  let fileName = "entitydbfile"
   
   override func setUp() {
     super.setUp()
@@ -58,6 +19,8 @@ class HLDBEntityTests: XCTestCase {
   
   override func tearDown() {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
+    let db = HLDB.DB.deleteDB(fileName)
+    
     super.tearDown()
   }
   
@@ -68,7 +31,6 @@ class HLDBEntityTests: XCTestCase {
   func testCreateEntityTable() {
     let finishedExpectation = expectationWithDescription("finished")
     
-    let fileName = "dbfile"
     let db = HLDB.DB(fileName: fileName)
     let tableName = "Mucus"
     let table = entityTable(db, name: tableName)
@@ -106,6 +68,7 @@ class HLDBEntityTests: XCTestCase {
             XCTAssert(false, "Expected zero tables")
           }
           
+          table.drop()
           finishedExpectation.fulfill()
         }
       }
@@ -120,13 +83,22 @@ class HLDBEntityTests: XCTestCase {
   func testCreateEntityTest() {
     let finishedExpectation = expectationWithDescription("finished")
     
-    let fileName = "dbfile"
     let db = HLDB.DB(fileName: fileName)
     let tableName = "createTable"
     let table = entityTable(db, name: tableName)
     table.create()
     
-    var entity = TestEntity()
+    var details = RollPhotoDetails()
+    details.client_asset_url = "AAA"
+    details.exif = "BBB"
+    details.size = 1
+    details.tz = "CCC"
+    details.tz_offset = 2
+    details.thumb = true
+    details.thumb_size = 3
+    details.type = "DDD"
+    
+    var entity = RollPhoto()
     entity.photo_id = "AAAA"
     entity.remote_asset_url = "BBBB"
     entity.title = "CCCC"
@@ -137,6 +109,102 @@ class HLDBEntityTests: XCTestCase {
     entity.taken_by = "EEEE"
     entity.is_tip_card = true
     entity.default_image = "FFFF"
+    entity.details = details
+    
+    let row = HLDB.Table.Row(fields: entity.toFields())
+    table.insert([row]).onSuccess { result in
+      switch result {
+      case .Success:
+        break
+      case .Error(let code, let message):
+        XCTAssert(false, "Tables query returned error \(code) \(message)")
+      case .Items(let arr):
+        XCTAssert(false, "Tables query returned items rather than success")
+      }
+      
+      table.select().onSuccess { result in
+        
+        switch result {
+        case .Success:
+          XCTAssert(false, "Tables query returned success rather than the tables")
+        case .Error(let code, let message):
+          XCTAssert(false, "Tables query returned error \(code) \(message)")
+        case .Items(let arr):
+          // expected to get one item
+          if arr.count != 1 {
+            XCTAssert(false, "Expected to get one row back")
+          }
+          
+          // convert to an entity
+          if let item = arr[0] as? [String: AnyObject] {
+            let loadedEntity = RollPhoto(fields: item)
+            
+            // does the entity match?
+            if loadedEntity != entity {
+              XCTAssert(false, "Loaded entity does not match!")
+            }
+            
+          } else {
+            XCTAssert(false, "Unable to convert result row to [String: AnyObject]")
+          }
+        }
+        
+        table.drop()
+        finishedExpectation.fulfill()
+        return
+      }
+    }
+    
+    // Loop until the expectation is fulfilled
+    waitForExpectationsWithTimeout(1, { error in
+      XCTAssertNil(error, "Error")
+    })
+  }
+
+  func testLoadFromJSON() {
+    // load it from JSON file
+    let testBundle = NSBundle(forClass: self.dynamicType)
+    let jsonPath = testBundle.resourcePath?.stringByAppendingPathComponent("photos_mine.json")
+    var loadedJSONData = NSData(contentsOfFile: jsonPath!)
+    var error: NSError? = nil
+    let jsonObject: AnyObject = NSJSONSerialization.JSONObjectWithData(loadedJSONData!, options: nil, error:&error)!
+
+    // inflate this
+    
+    NSLog("JSON Object=\(jsonObject)")
+  }
+  
+  func testUpdateEntity() {
+    let finishedExpectation = expectationWithDescription("finished")
+    
+    let db = HLDB.DB(fileName: fileName)
+    let tableName = "updateTable"
+    let table = entityTable(db, name: tableName)
+    table.create()
+    
+    var details = RollPhotoDetails()
+    details.client_asset_url = "AAA"
+    details.exif = "BBB"
+    details.size = 1
+    details.tz = "CCC"
+    details.tz_offset = 2
+    details.thumb = true
+    details.thumb_size = 3
+    details.type = "DDD"
+    
+    var entity = RollPhoto()
+    entity.photo_id = "AAAA"
+    entity.remote_asset_url = "BBBB"
+    entity.title = "CCCC"
+    entity.subtitle = "DDDD"
+    entity.likes = 5
+    entity.self_like = true
+    entity.taken_at = 7.0
+    entity.taken_by = "EEEE"
+    entity.is_tip_card = true
+    entity.default_image = "FFFF"
+    entity.details = details
+    
     let row = HLDB.Table.Row(fields: entity.toFields())
     table.insert([row]).onSuccess { result in
       switch result {
@@ -147,6 +215,8 @@ class HLDBEntityTests: XCTestCase {
         case .Items(let arr):
           XCTAssert(false, "Tables query returned items rather than success")
       }
+      
+      table.update([row])
       
       table.select().onSuccess { result in
         
@@ -163,15 +233,19 @@ class HLDBEntityTests: XCTestCase {
           
             // convert to an entity
             if let item = arr[0] as? [String: AnyObject] {
-              let loadedEntity = TestEntity(fields: item)
+              let loadedEntity = RollPhoto(fields: item)
               
               // does the entity match?
+              if loadedEntity != entity {
+                XCTAssert(false, "Loaded entity does not match!")
+              }
               
             } else {
               XCTAssert(false, "Unable to convert result row to [String: AnyObject]")
             }
         }
-        
+
+        table.drop()
         finishedExpectation.fulfill()
         return
       }

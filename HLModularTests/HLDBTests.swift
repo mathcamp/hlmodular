@@ -356,6 +356,76 @@ class HLDBTests: XCTestCase {
     })
   }
   
+  /*
+  func testUpsert() {
+    let finishedExpectation = expectationWithDescription("finished")
+    
+    let fileName = "dbfile"
+    let db = HLDB.DB(fileName: fileName)
+    
+    let tableName = "InsertableTable"
+    let table = simpleTable(db, name: tableName)
+    table.create()
+    
+    // now insert an item
+    let row1 = HLDB.Table.Row(fields: ["id" : "monkeyid",
+      "v"  : "monkeyvalue",
+      "ts" : 1000])
+    let row2 = HLDB.Table.Row(fields: ["id" : "marsupialid",
+      "v"  : "marsupialvalue",
+      "ts" : 1001])
+    table.upsert([row1, row2]).onSuccess { result in
+      
+      switch result {
+      case .Success:
+        break
+      case .Error(let code, let message):
+        XCTAssert(false, "Insert query returned error \(code) \(message)")
+      case .Items(let items):
+        XCTAssert(false, "Insert query returned items rather than success")
+      }
+      
+      // query to see if we can find those items
+      table.select().onSuccess { result in
+        switch result {
+        case .Success:
+          XCTAssert(false, "Insert query returned success rather than items")
+        case .Error(let code, let message):
+          XCTAssert(false, "Insert query returned error \(code) \(message)")
+        case .Items(let items):
+          
+          if items.count != 2 {
+            XCTAssert(false, "Expected two items!")
+          }
+          
+          var matched = false
+          if let item1 = items[0] as? [String: AnyObject] {
+            if let item2 = items[1] as? [String: AnyObject] {
+              let foundRow1 = HLDB.Table.Row(fields: item1)
+              let foundRow2 = HLDB.Table.Row(fields: item2)
+              if foundRow1 == row1 || foundRow2 == row2 {
+                matched = true
+              }
+            }
+          }
+          
+          if !matched {
+            XCTAssert(false, "Rows don't match")
+          }
+        }
+        
+        // now upsert one of the rows and check it
+        
+      }
+    }
+
+    // Loop until the expectation is fulfilled
+    waitForExpectationsWithTimeout(1, { error in
+      XCTAssertNil(error, "Error")
+    })
+  }
+*/
+  
   func testInsertPerf() {
     self.measureBlock() {
       let finishedExpectation = self.expectationWithDescription("finished")

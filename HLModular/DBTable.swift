@@ -162,6 +162,19 @@ public class HLDB {
   public class Entity {
     let fields: [String: AnyObject] = [:]
     
+    public init(obj: AnyObject?) {
+      self.fields = [:]
+      if let obj: AnyObject = obj {
+        if let fields = obj as? [String: AnyObject] {
+          self.fields = fields
+        } else if let json = obj as? String {
+          if let jsonObj = self.deserializeFromJSON(json) as? [String: AnyObject] {
+            self.fields = jsonObj
+          }
+        }
+      }
+    }
+    
     public init(fields: [String: AnyObject] = [:]) {
       self.fields = fields
     }
@@ -185,6 +198,16 @@ public class HLDB {
       return ""
     }
     
+    func deserializeFromJSON(json: String) -> AnyObject? {
+      var error: NSError? = nil
+      if let detailsData = (json as NSString).dataUsingEncoding(NSUTF8StringEncoding) {
+        if let jsonObject: AnyObject = NSJSONSerialization.JSONObjectWithData(detailsData, options: nil, error:&error) {
+          return jsonObject
+        }
+      }
+      return nil
+    }
+    
     func deserializeJSONFieldAsArray(fieldName: String) -> [AnyObject]? {
       if let dict = deserializeJSONField(fieldName) as? [AnyObject] {
         return dict
@@ -201,16 +224,14 @@ public class HLDB {
     
     func deserializeJSONField(fieldName: String) -> AnyObject? {
       if let json = fields[fieldName] as? String {
-        var error: NSError? = nil
-        if let detailsData = (json as NSString).dataUsingEncoding(NSUTF8StringEncoding) {
-          if let jsonObject: AnyObject = NSJSONSerialization.JSONObjectWithData(detailsData, options: nil, error:&error) {
-            return jsonObject
-          }
-        }
+        return deserializeFromJSON(json)
       }
       return nil
     }
 
+    func value(fieldName: String) -> AnyObject? {
+      return fields[fieldName]
+    }
     
     func boolValue(fieldName: String, defaultValue: Bool = false) -> Bool {
       var outValue = defaultValue
@@ -254,6 +275,13 @@ public class HLDB {
 
     func arrayValue(fieldName: String, defaultValue: [AnyObject] = []) -> [AnyObject] {
       var outValue = defaultValue
+      // if this is a string then decode json
+      if let v = fields[fieldName] as? String {
+        if let array = deserializeJSONFieldAsArray(fieldName) {
+          return array
+        }
+      }
+      // if it's a dictionary, then just return the dict
       if let v = fields[fieldName] as? [AnyObject] {
         outValue = v
       }
@@ -262,17 +290,17 @@ public class HLDB {
     
     func dictValue(fieldName: String, defaultValue: [String: AnyObject] = [:]) -> [String: AnyObject] {
       var outValue = defaultValue
+      // if this is a string then decode json
+      if let v = fields[fieldName] as? String {
+        if let dict = deserializeJSONFieldAsDictionary(fieldName) {
+          return dict
+        }
+      }
+      // if it's a dictionary, then just return the dict
       if let v = fields[fieldName] as? [String: AnyObject] {
         outValue = v
       }
       return outValue
-    }
-    
-    func jsonArrayValue(fieldName: String, defaultValue: [AnyObject] = []) -> [AnyObject] {
-      if let array = deserializeJSONFieldAsArray(fieldName) {
-        return array
-      }
-      return defaultValue
     }
   }
   

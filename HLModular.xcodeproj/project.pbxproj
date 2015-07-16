@@ -21,6 +21,9 @@
 		195F5C4C1B54902F00AA0A01 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C421B54902B00AA0A01 /* Promise.swift */; };
 		195F5C4D1B54902F00AA0A01 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C431B54902B00AA0A01 /* Queue.swift */; };
 		195F5C541B55A47000AA0A01 /* HLDBEntityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C531B55A47000AA0A01 /* HLDBEntityTests.swift */; };
+		1980CB031B5733C600A42B19 /* photos_mine.json in Resources */ = {isa = PBXBuildFile; fileRef = 1980CB021B5733C600A42B19 /* photos_mine.json */; };
+		1980CB041B5734E800A42B19 /* RollPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1991777F1B50B04400019511 /* RollPhoto.swift */; };
+		1980CB061B5734EB00A42B19 /* RollPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1991777F1B50B04400019511 /* RollPhoto.swift */; };
 		199177881B50CF6700019511 /* DBTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199177871B50CF6700019511 /* DBTable.swift */; };
 		19E0BB601B4763C100967E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB5F1B4763C100967E9F /* AppDelegate.swift */; };
 		19E0BB621B4763C100967E9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB611B4763C100967E9F /* ViewController.swift */; };
@@ -55,6 +58,7 @@
 		195F5C421B54902B00AA0A01 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
 		195F5C431B54902B00AA0A01 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		195F5C531B55A47000AA0A01 /* HLDBEntityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HLDBEntityTests.swift; sourceTree = "<group>"; };
+		1980CB021B5733C600A42B19 /* photos_mine.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = photos_mine.json; sourceTree = "<group>"; };
 		1991777F1B50B04400019511 /* RollPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollPhoto.swift; sourceTree = "<group>"; };
 		199177871B50CF6700019511 /* DBTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBTable.swift; sourceTree = "<group>"; };
 		19D12A431B50954B00868C0E /* HLModular-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HLModular-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 				195F5C531B55A47000AA0A01 /* HLDBEntityTests.swift */,
 				19E0BB751B4763C200967E9F /* HLModularTests.swift */,
 				19E0BB731B4763C200967E9F /* Supporting Files */,
+				1980CB021B5733C600A42B19 /* photos_mine.json */,
 			);
 			path = HLModularTests;
 			sourceTree = "<group>";
@@ -301,6 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1980CB031B5733C600A42B19 /* photos_mine.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19E0BB861B47A4E100967E9F /* FaceDetector.swift in Sources */,
+				1980CB061B5734EB00A42B19 /* RollPhoto.swift in Sources */,
 				199177881B50CF6700019511 /* DBTable.swift in Sources */,
 				19E0BB821B478E4400967E9F /* PhotosModule.swift in Sources */,
 				19E0BB881B47A51E00967E9F /* FaceDetectorModule.swift in Sources */,
@@ -370,6 +377,7 @@
 				195F5C491B54902F00AA0A01 /* ExecutionContext.swift in Sources */,
 				195F5C4A1B54902F00AA0A01 /* Future.swift in Sources */,
 				195F5C3B1B54469100AA0A01 /* HLDBTests.swift in Sources */,
+				1980CB041B5734E800A42B19 /* RollPhoto.swift in Sources */,
 				195F5C4C1B54902F00AA0A01 /* Promise.swift in Sources */,
 				195F5C541B55A47000AA0A01 /* HLDBEntityTests.swift in Sources */,
 			);
