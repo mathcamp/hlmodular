@@ -474,19 +474,46 @@ public class HLDB {
       return fieldStrArr
     }
     
-    public func insert(rows: [Row]) -> Future<DB.Result> {
-      let query = "INSERT INTO \(name) (\(fieldNamesStr)) values (\(fieldNamesPlaceholderStr))"
+    func insertAndUpdate(insertRows: [Row], updateRows: [Row]) -> Future<DB.Result> {
       var queries: [DB.QueryArgs] = []
-      for row in rows {
-        let args = rowFields(row)
-        queries.append(DB.QueryArgs(query: query, args: args))
+      if insertRows.count > 0 {
+        let query = "INSERT INTO \(name) (\(fieldNamesStr)) values (\(fieldNamesPlaceholderStr))"
+        for row in insertRows {
+          let args = rowFields(row)
+          queries.append(DB.QueryArgs(query: query, args: args))
+        }
+      }
+      if updateRows.count > 0 {
+        for row in updateRows {
+          if let primaryKeyVal = row.fields[primaryKey] as? String {
+            var pairs: [String] = []
+            var args: [AnyObject] = []
+            for (k, v) in row.fields{
+              if k == primaryKey { continue }
+              pairs.append("\(k) = ?")
+              args.append(v)
+            }
+            let pairsStr = ", ".join(pairs)
+            let query = "UPDATE \(name) SET \(pairsStr) WHERE \(primaryKey) = ?"
+            args.append(primaryKeyVal)
+            queries.append(DB.QueryArgs(query: query, args: args))
+          } else {
+            let p = Promise<DB.Result>()
+            p.success(.Error(-1, "Cannot update without primary key!"))
+            return p.future
+          }
+        }
       }
       return db.update(queries)
     }
     
-/*    func insertAndUpdate(insertRows: [Row], updateRows: [Row]) -> Future<DB.Result> {
-      
-    } */
+    public func insert(rows: [Row]) -> Future<DB.Result> {
+      return insertAndUpdate(rows, updateRows: [])
+    }
+    
+    public func update(rows: [Row]) -> Future<DB.Result> {
+      return insertAndUpdate([], updateRows: rows)
+    }
     
     public func upsert(rows: [Row]) -> Future<DB.Result> {
       let p = Promise<DB.Result>()
@@ -500,8 +527,11 @@ public class HLDB {
         }
       }
       let placeholderListStr = ",".join(placeholderList)
-      var foundIds: [String] = []
-      db.query("SELECT \(primaryKey) FROM \(name) WHERE \(primaryKey) in (\(placeholderListStr))", args: idList).onSuccess { result in
+      var foundIds: [String: Bool] = [:]
+      
+      let selectQuery = "SELECT \(primaryKey) FROM \(name) WHERE \(primaryKey) in (\(placeholderListStr))"
+      NSLog("Upsert idList=\(idList) selectQuery=\(selectQuery)")
+      db.query(selectQuery, args: idList).onSuccess { result in
        
         switch result {
           case .Success:
@@ -511,48 +541,41 @@ public class HLDB {
           case .Items(let items):
             for item in items {
               if let v = item[self.primaryKey] as? String {
-                foundIds.append(v)
+                foundIds[v] = true
               }
             }
         }
       }
       
-      if foundIds.count == 0 {
-        // everything should be inserted
-      } else {
-        // mixture of insert and update
-      }
+      NSLog("Upsert numRows=\(rows.count) foundRows=\(foundIds)")
       
-      db.getQueue()?.inTransaction() {
-        db, rollback in
-
+      if foundIds.count == 0 {
+        // Simple case: everything should be inserted
+        insert(rows).onSuccess { result in
+          p.success(result)
+        }
+      } else {
+        // Complex case: mixture of insert and update
+        var insertRows: [Row] = []
+        var updateRows: [Row] = []
+        
+        for row in rows {
+          if let rowId = row.fields[primaryKey] as? String {
+            if let foundRowId = foundIds[rowId] {
+              updateRows.append(row)
+            } else {
+              insertRows.append(row)
+            }
+          }
+        }
+        NSLog("Upsert insertRows=\(insertRows.count) updateRows=\(updateRows.count)")
+        
+        self.insertAndUpdate(insertRows, updateRows: updateRows).onSuccess { result in
+          p.success(result)
+        }
       }
       
       return p.future
-    }
-    
-    public func update(rows: [Row]) -> Future<DB.Result> {
-      var queries: [DB.QueryArgs] = []
-      for row in rows {
-        if let primaryKeyVal = row.fields[primaryKey] as? String {
-          var pairs: [String] = []
-          var args: [AnyObject] = []
-          for (k, v) in row.fields{
-            if k == primaryKey { continue }
-            pairs.append("\(k) = ?")
-            args.append(v)
-          }
-          let pairsStr = ", ".join(pairs)
-          let query = "UPDATE \(name) SET \(pairsStr) WHERE \(primaryKey) = ?"
-          args.append(primaryKeyVal)
-          queries.append(DB.QueryArgs(query: query, args: args))
-        } else {
-          let p = Promise<DB.Result>()
-          p.success(.Error(-1, "Cannot update without primary key!"))
-          return p.future
-        }
-      }
-      return db.update(queries)
     }
     
     public func select(whereStr: String = "") -> Future<DB.Result> {

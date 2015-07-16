@@ -333,7 +333,7 @@ class HLDBTests: XCTestCase {
             if let item2 = items[1] as? [String: AnyObject] {
               let foundRow1 = HLDB.Table.Row(fields: item1)
               let foundRow2 = HLDB.Table.Row(fields: item2)
-              if foundRow1 == row1 || foundRow2 == row2 {
+              if foundRow1 == row1 && foundRow2 == row2 {
                 matched = true
               }
             }
@@ -356,7 +356,6 @@ class HLDBTests: XCTestCase {
     })
   }
   
-  /*
   func testUpsert() {
     let finishedExpectation = expectationWithDescription("finished")
     
@@ -380,18 +379,18 @@ class HLDBTests: XCTestCase {
       case .Success:
         break
       case .Error(let code, let message):
-        XCTAssert(false, "Insert query returned error \(code) \(message)")
+        XCTAssert(false, "Upsert query returned error \(code) \(message)")
       case .Items(let items):
-        XCTAssert(false, "Insert query returned items rather than success")
+        XCTAssert(false, "Upsert query returned items rather than success")
       }
       
       // query to see if we can find those items
       table.select().onSuccess { result in
         switch result {
         case .Success:
-          XCTAssert(false, "Insert query returned success rather than items")
+          XCTAssert(false, "Select query returned success rather than items")
         case .Error(let code, let message):
-          XCTAssert(false, "Insert query returned error \(code) \(message)")
+          XCTAssert(false, "Select query returned error \(code) \(message)")
         case .Items(let items):
           
           if items.count != 2 {
@@ -403,7 +402,7 @@ class HLDBTests: XCTestCase {
             if let item2 = items[1] as? [String: AnyObject] {
               let foundRow1 = HLDB.Table.Row(fields: item1)
               let foundRow2 = HLDB.Table.Row(fields: item2)
-              if foundRow1 == row1 || foundRow2 == row2 {
+              if foundRow1 == row1 && foundRow2 == row2 {
                 matched = true
               }
             }
@@ -414,8 +413,106 @@ class HLDBTests: XCTestCase {
           }
         }
         
-        // now upsert one of the rows and check it
-        
+        // now upsert one of the rows and check it and add another one
+        let updatedRow2 = HLDB.Table.Row(fields: ["id" : "marsupialid",
+          "v"  : "marsupialvalue2",
+          "ts" : 2001])
+        table.upsert([updatedRow2]).onSuccess { result in
+          switch result {
+          case .Success:
+            break
+          case .Error(let code, let message):
+            XCTAssert(false, "Upsert query returned error \(code) \(message)")
+          case .Items(let items):
+            XCTAssert(false, "Upsert query returned itesm rather than success")
+          }
+          
+          // now select again and validate the updated row
+          table.select().onSuccess { result in
+            switch result {
+            case .Success:
+              XCTAssert(false, "Select query returned success rather than items")
+            case .Error(let code, let message):
+              XCTAssert(false, "Select query returned error \(code) \(message)")
+            case .Items(let items):
+              
+              if items.count != 2 {
+                XCTAssert(false, "Expected two items!")
+              }
+              
+              var matched = false
+              if let item1 = items[0] as? [String: AnyObject] {
+                if let item2 = items[1] as? [String: AnyObject] {
+                  let foundRow1 = HLDB.Table.Row(fields: item1)
+                  let foundRow2 = HLDB.Table.Row(fields: item2)
+                  if foundRow1 == row1 && foundRow2 == updatedRow2 {
+                    matched = true
+                  }
+                }
+              }
+              
+              if !matched {
+                XCTAssert(false, "Rows don't match")
+              }
+            }
+            
+            // now update both rows and add a third
+            let updatedRow1 = HLDB.Table.Row(fields: ["id" : "monkeyid",
+              "v"  : "monkeyvalue3",
+              "ts" : 3000])
+            let updatedRow2 = HLDB.Table.Row(fields: ["id" : "marsupialid",
+              "v"  : "marsupialvalue3",
+              "ts" : 3001])
+            let row3 = HLDB.Table.Row(fields: ["id" : "zebraid",
+              "v"  : "zebravalue3",
+              "ts" : 3002])
+            table.upsert([updatedRow1, updatedRow2, row3]).onSuccess { result in
+              switch result {
+              case .Success:
+                break
+              case .Error(let code, let message):
+                XCTAssert(false, "Upsert query returned error \(code) \(message)")
+              case .Items(let items):
+                XCTAssert(false, "Upsert query returned itesm rather than success")
+              }
+
+              table.select().onSuccess { result in
+                switch result {
+                case .Success:
+                  XCTAssert(false, "Select query returned success rather than items")
+                case .Error(let code, let message):
+                  XCTAssert(false, "Select query returned error \(code) \(message)")
+                case .Items(let items):
+                  
+                  if items.count != 3 {
+                    XCTAssert(false, "Expected three items!")
+                  }
+                  
+                  var matched = false
+                  if let item1 = items[0] as? [String: AnyObject] {
+                    if let item2 = items[1] as? [String: AnyObject] {
+                      if let item3 = items[2] as? [String: AnyObject] {
+                        let foundRow1 = HLDB.Table.Row(fields: item1)
+                        let foundRow2 = HLDB.Table.Row(fields: item2)
+                        let foundRow3 = HLDB.Table.Row(fields: item3)
+                        if foundRow1 == updatedRow1 && foundRow2 == updatedRow2 && foundRow3 == row3 {
+                          matched = true
+                        }
+                      }
+                    }
+                  }
+                  
+                  if !matched {
+                    XCTAssert(false, "Rows don't match")
+                  }
+                }
+                
+                table.drop()
+                finishedExpectation.fulfill()
+              }
+            }
+          }
+        }
       }
     }
 
@@ -424,7 +521,6 @@ class HLDBTests: XCTestCase {
       XCTAssertNil(error, "Error")
     })
   }
-*/
   
   func testInsertPerf() {
     self.measureBlock() {

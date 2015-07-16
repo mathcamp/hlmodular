@@ -171,7 +171,13 @@ class HLDBEntityTests: XCTestCase {
 
     // inflate this
     
-    NSLog("JSON Object=\(jsonObject)")
+    // NSLog("JSON Object=\(jsonObject)")
+    if let fields = jsonObject as? [String: AnyObject] {
+      var photoPage = RollPhotosPage(fields: fields)
+      for photo in photoPage.page {
+        NSLog("Got photo \(photo.toFields())")
+      }
+    }
   }
   
   func testUpdateEntity() {
