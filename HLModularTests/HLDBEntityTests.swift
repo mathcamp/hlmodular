@@ -173,9 +173,45 @@ class HLDBEntityTests: XCTestCase {
     
     // NSLog("JSON Object=\(jsonObject)")
     if let fields = jsonObject as? [String: AnyObject] {
-      var photoPage = RollPhotosPage(fields: fields)
-      for photo in photoPage.page {
+      self.measureBlock() {
+        for idx in 1..<2 {
+          var photoPage = RollPhotosPage(fields: fields)
+        }
+        
+  /*      for photo in photoPage.page {
+          NSLog("Got photo \(photo.toFields())")
+        } */
+      }
+    }
+  }
+  
+  func testLoadFromJSONAndUnwrap() {
+    // load it from JSON file
+    let testBundle = NSBundle(forClass: self.dynamicType)
+    let jsonPath = testBundle.resourcePath?.stringByAppendingPathComponent("photos_mine.json")
+    var loadedJSONData = NSData(contentsOfFile: jsonPath!)
+    var error: NSError? = nil
+    let jsonObject: AnyObject = NSJSONSerialization.JSONObjectWithData(loadedJSONData!, options: nil, error:&error)!
+    
+    // inflate this
+    
+    // NSLog("JSON Object=\(jsonObject)")
+    if let fields = jsonObject as? [String: AnyObject] {
+      self.measureBlock() {
+        for idx in 1..<100 {
+          var photoPage = RollPhotosPage(fields: fields)
+          for photo in photoPage.page {
+            let p = photo.title
+            for like in photo.like_details {
+              let n = like.name
+            }
+//            var fields = photo.toFields()
+          }
+        }
+        
+        /*      for photo in photoPage.page {
         NSLog("Got photo \(photo.toFields())")
+        } */
       }
     }
   }
