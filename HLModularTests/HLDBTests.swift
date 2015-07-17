@@ -249,7 +249,7 @@ class HLDBTests: XCTestCase {
             }
             
             var matched = false
-            if let item1 = items[0] as? [String: AnyObject] {
+            if let item1 = items[0] as? NSMutableDictionary {
               let foundRow1 = HLDB.Table.Row(fields: item1)
               if foundRow1 == row1Update {
                 matched = true
@@ -259,7 +259,7 @@ class HLDBTests: XCTestCase {
               XCTAssert(false, "Updated item did not match")
             }
             
-            if let item2 = items[1] as? [String: AnyObject] {
+            if let item2 = items[1] as? NSMutableDictionary {
               let foundRow2 = HLDB.Table.Row(fields: item2)
               if foundRow2 == row2 || foundRow2 == row2Update {
                 XCTAssert(false, "Updated row matched the wrong row")
@@ -329,8 +329,8 @@ class HLDBTests: XCTestCase {
           }
           
           var matched = false
-          if let item1 = items[0] as? [String: AnyObject] {
-            if let item2 = items[1] as? [String: AnyObject] {
+          if let item1 = items[0] as? NSMutableDictionary {
+            if let item2 = items[1] as? NSMutableDictionary {
               let foundRow1 = HLDB.Table.Row(fields: item1)
               let foundRow2 = HLDB.Table.Row(fields: item2)
               if foundRow1 == row1 && foundRow2 == row2 {
@@ -398,8 +398,8 @@ class HLDBTests: XCTestCase {
           }
           
           var matched = false
-          if let item1 = items[0] as? [String: AnyObject] {
-            if let item2 = items[1] as? [String: AnyObject] {
+          if let item1 = items[0] as? NSMutableDictionary {
+            if let item2 = items[1] as? NSMutableDictionary {
               let foundRow1 = HLDB.Table.Row(fields: item1)
               let foundRow2 = HLDB.Table.Row(fields: item2)
               if foundRow1 == row1 && foundRow2 == row2 {
@@ -441,8 +441,8 @@ class HLDBTests: XCTestCase {
               }
               
               var matched = false
-              if let item1 = items[0] as? [String: AnyObject] {
-                if let item2 = items[1] as? [String: AnyObject] {
+              if let item1 = items[0] as? NSMutableDictionary {
+                if let item2 = items[1] as? NSMutableDictionary {
                   let foundRow1 = HLDB.Table.Row(fields: item1)
                   let foundRow2 = HLDB.Table.Row(fields: item2)
                   if foundRow1 == row1 && foundRow2 == updatedRow2 {
@@ -489,9 +489,9 @@ class HLDBTests: XCTestCase {
                   }
                   
                   var matched = false
-                  if let item1 = items[0] as? [String: AnyObject] {
-                    if let item2 = items[1] as? [String: AnyObject] {
-                      if let item3 = items[2] as? [String: AnyObject] {
+                  if let item1 = items[0] as? NSMutableDictionary {
+                    if let item2 = items[1] as? NSMutableDictionary {
+                      if let item3 = items[2] as? NSMutableDictionary {
                         let foundRow1 = HLDB.Table.Row(fields: item1)
                         let foundRow2 = HLDB.Table.Row(fields: item2)
                         let foundRow3 = HLDB.Table.Row(fields: item3)

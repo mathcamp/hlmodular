@@ -136,7 +136,7 @@ class HLDBEntityTests: XCTestCase {
           }
           
           // convert to an entity
-          if let item = arr[0] as? [String: AnyObject] {
+          if let item = arr[0] as? NSMutableDictionary {
             let loadedEntity = RollPhoto(fields: item)
             
             // does the entity match?
@@ -145,7 +145,7 @@ class HLDBEntityTests: XCTestCase {
             }
             
           } else {
-            XCTAssert(false, "Unable to convert result row to [String: AnyObject]")
+            XCTAssert(false, "Unable to convert result row to NSMutableDictionary")
           }
         }
         
@@ -172,9 +172,9 @@ class HLDBEntityTests: XCTestCase {
     // inflate this
     
     // NSLog("JSON Object=\(jsonObject)")
-    if let fields = jsonObject as? [String: AnyObject] {
+    if let fields = jsonObject as? NSMutableDictionary {
       self.measureBlock() {
-        for idx in 1..<2 {
+        for idx in 0..<1 {
           var photoPage = RollPhotosPage(fields: fields)
         }
         
@@ -196,9 +196,9 @@ class HLDBEntityTests: XCTestCase {
     // inflate this
     
     // NSLog("JSON Object=\(jsonObject)")
-    if let fields = jsonObject as? [String: AnyObject] {
+    if let fields = jsonObject as? NSMutableDictionary {
       self.measureBlock() {
-        for idx in 1..<100 {
+        for idx in 0..<1 {
           var photoPage = RollPhotosPage(fields: fields)
           for photo in photoPage.page {
             let p = photo.title
@@ -274,7 +274,7 @@ class HLDBEntityTests: XCTestCase {
             }
           
             // convert to an entity
-            if let item = arr[0] as? [String: AnyObject] {
+            if let item = arr[0] as? NSMutableDictionary {
               let loadedEntity = RollPhoto(fields: item)
               
               // does the entity match?
@@ -283,7 +283,7 @@ class HLDBEntityTests: XCTestCase {
               }
               
             } else {
-              XCTAssert(false, "Unable to convert result row to [String: AnyObject]")
+              XCTAssert(false, "Unable to convert result row to NSMutableDictionary")
             }
         }
 

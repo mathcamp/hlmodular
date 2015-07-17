@@ -55,7 +55,7 @@ public class RollReverseGeocode: HLDB.Entity {
   lazy public var State: String       = self.stringValue("State")
   lazy public var SubLocality: String = self.stringValue("SubLocality")
   
-  override public func toFields() -> [String: AnyObject] {
+  override public func toFields() -> NSMutableDictionary {
     return ["City"        : City,
             "Country"     : Country,
             "State"       : State,
@@ -72,7 +72,7 @@ public class RollWeather: HLDB.Entity {
   lazy public var wind_bearing: Int = self.intValue("wind_bearing")
   lazy public var wind_speed: Int   = self.intValue("wind_speed")
   
-  override public func toFields() -> [String: AnyObject] {
+  override public func toFields() -> NSMutableDictionary {
     return ["cloud_cover"  : cloud_cover,
             "humidity"     : humidity,
             "icon"         : icon,
@@ -87,7 +87,7 @@ public class RollLocation: HLDB.Entity {
   lazy public var Lat: Double = self.doubleValue("Lat")
   lazy public var Lng: Double = self.doubleValue("Lng")
   
-  override public func toFields() -> [String: AnyObject] {
+  override public func toFields() -> NSMutableDictionary {
     return ["Lat" : Lat,
             "Lng" : Lng ]
   }
@@ -106,7 +106,7 @@ public class RollPhotoDetails: HLDB.Entity {
   lazy public var weather: RollWeather     = RollWeather(fields: self.dictValue("weather"))
   lazy public var reverse_geocode: RollReverseGeocode = RollReverseGeocode(fields: self.dictValue("reverse_geocode"))
   
-  override public func toFields() -> [String: AnyObject] {
+  override public func toFields() -> NSMutableDictionary {
     return ["client_asset_url" : client_asset_url,
       "exif"             : exif,
       "size"             : size,
@@ -125,7 +125,7 @@ public class RollPhotoTagLocation: HLDB.Entity {
   lazy public var fromLeft: Float = self.floatValue("fromLeft")
   lazy public var fromTop: Float  = self.floatValue("fromTop")
   
-  override public func toFields() -> [String: AnyObject] {
+  override public func toFields() -> NSMutableDictionary {
     return ["fromLeft" : fromLeft,
       "fromTop"  : fromTop]
   }
@@ -143,7 +143,7 @@ public class RollContact: HLDB.Entity {
   lazy public var inStateStr: String = self.stringValue("inStateStr")
   lazy public var outStateStr: String = self.stringValue("outStateStr")
   
-  override public func toFields() -> [String: AnyObject] {
+  override public func toFields() -> NSMutableDictionary {
     return ["id"          : id,
       "username"    : username,
       "name"        : name,
@@ -168,7 +168,7 @@ public class RollPhotoTag: HLDB.Entity {
   lazy public var canEdit : Bool                 = self.boolValue("canEdit")
   lazy public var contact: RollContact           = RollContact(fields: self.dictValue("contact"))
   
-  override public func toFields() -> [String: AnyObject] {
+  override public func toFields() -> NSMutableDictionary {
     return ["createdBy"     : createdBy,
             "location"      : location.toFields(),
             "title"         : title,
@@ -185,7 +185,7 @@ public class RollLike: HLDB.Entity {
   lazy public var name: String = self.stringValue("name")
   lazy public var ts: Double = self.doubleValue("ts")
   
-  override public func toFields() -> [String: AnyObject] {
+  override public func toFields() -> NSMutableDictionary {
     return ["name" : name,
             "ts"   : ts]
   }
@@ -196,14 +196,14 @@ public class RollPhotosPage: HLDB.Entity {
   lazy public var next: String      = self.stringValue("next")
   lazy public var page: [RollPhoto] = self.pageValue()
   
-  override public func toFields() -> [String: AnyObject] {
+  override public func toFields() -> NSMutableDictionary {
     return ["previous" : previous,
             "next"     : next,
             "page"     : pageJSON()]
   }
   
   func pageValue() -> [RollPhoto] {
-    if let dictArray = arrayValue("page") as? [[String: AnyObject]] {
+    if let dictArray = arrayValue("page") as? [NSMutableDictionary] {
       return dictArray.map { RollPhoto(fields: $0) }
     }
     return []
@@ -229,7 +229,7 @@ public class RollPhoto: HLDB.Entity, Equatable {
   lazy public var details: RollPhotoDetails = RollPhotoDetails(fields: self.dictValue("details"))
   lazy public var tags: [RollPhotoTag]      = self.tagsValue()
   
-  override public func toFields() -> [String: AnyObject] {
+  override public func toFields() -> NSMutableDictionary {
     return ["photo_id"         : photo_id,
             "remote_asset_url" : remote_asset_url,
             "title"            : title,
@@ -249,7 +249,7 @@ public class RollPhoto: HLDB.Entity, Equatable {
   }
   
   func likeDetailsValue() -> [RollLike] {
-    if let dictArray = arrayValue("like_details") as? [[String: AnyObject]] {
+    if let dictArray = arrayValue("like_details") as? [NSMutableDictionary] {
       return dictArray.map { RollLike(fields: $0) }
     }
     return []
@@ -260,7 +260,7 @@ public class RollPhoto: HLDB.Entity, Equatable {
   }
   
   func tagsValue() -> [RollPhotoTag] {
-    if let dictArray = arrayValue("tags") as? [[String: AnyObject]] {
+    if let dictArray = arrayValue("tags") as? [NSMutableDictionary] {
       return dictArray.map { RollPhotoTag(fields: $0) }
     }
     return []

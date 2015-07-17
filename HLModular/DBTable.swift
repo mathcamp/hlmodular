@@ -9,8 +9,8 @@
 import Foundation
 
 public func ==(lhs: HLDB.Table.Row, rhs: HLDB.Table.Row) -> Bool {
-  var leftKeys = lhs.fields.keys.array
-  var rightKeys = rhs.fields.keys.array
+  var leftKeys: [String] = lhs.fields.allKeys as [String]
+  var rightKeys: [String] = rhs.fields.allKeys as [String]
   if leftKeys.count != rightKeys.count { return false }
   leftKeys.sort { $0 < $1 }
   rightKeys.sort { $0 < $1 }
@@ -160,26 +160,26 @@ public class HLDB {
   }
 
   public class Entity {
-    let fields: [String: AnyObject] = [:]
+    let fields: NSMutableDictionary = [:]
     
     public init(obj: AnyObject?) {
       self.fields = [:]
       if let obj: AnyObject = obj {
-        if let fields = obj as? [String: AnyObject] {
+        if let fields = obj as? NSMutableDictionary {
           self.fields = fields
         } else if let json = obj as? String {
-          if let jsonObj = self.deserializeFromJSON(json) as? [String: AnyObject] {
+          if let jsonObj = self.deserializeFromJSON(json) as? NSMutableDictionary {
             self.fields = jsonObj
           }
         }
       }
     }
     
-    public init(fields: [String: AnyObject] = [:]) {
+    public init(fields: NSMutableDictionary = [:]) {
       self.fields = fields
     }
 
-    public func toFields() -> [String: AnyObject] {
+    public func toFields() -> NSMutableDictionary {
       // override this in subclass
       return [:]
     }
@@ -215,8 +215,8 @@ public class HLDB {
       return nil
     }
     
-    func deserializeJSONFieldAsDictionary(fieldName: String) -> [String: AnyObject]? {
-      if let dict = deserializeJSONField(fieldName) as? [String: AnyObject] {
+    func deserializeJSONFieldAsDictionary(fieldName: String) -> NSMutableDictionary? {
+      if let dict = deserializeJSONField(fieldName) as? NSMutableDictionary {
         return dict
       }
       return nil
@@ -288,7 +288,7 @@ public class HLDB {
       return outValue
     }
     
-    func dictValue(fieldName: String, defaultValue: [String: AnyObject] = [:]) -> [String: AnyObject] {
+    func dictValue(fieldName: String, defaultValue: NSMutableDictionary = [:]) -> NSMutableDictionary {
       var outValue = defaultValue
       // if this is a string then decode json
       if let v = fields[fieldName] as? String {
@@ -297,7 +297,7 @@ public class HLDB {
         }
       }
       // if it's a dictionary, then just return the dict
-      if let v = fields[fieldName] as? [String: AnyObject] {
+      if let v = fields[fieldName] as? NSMutableDictionary {
         outValue = v
       }
       return outValue
@@ -335,7 +335,7 @@ public class HLDB {
     }
     
     public struct Row: Equatable {
-      let fields: [String: AnyObject] = [:]
+      let fields: NSMutableDictionary = [:]
     }
     
     public let name: String
@@ -488,10 +488,12 @@ public class HLDB {
           if let primaryKeyVal = row.fields[primaryKey] as? String {
             var pairs: [String] = []
             var args: [AnyObject] = []
-            for (k, v) in row.fields{
-              if k == primaryKey { continue }
-              pairs.append("\(k) = ?")
-              args.append(v)
+            for (k, v) in row.fields {
+              if let k = k as? String {
+                if k == primaryKey { continue }
+                pairs.append("\(k) = ?")
+                args.append(v)
+              }
             }
             let pairsStr = ", ".join(pairs)
             let query = "UPDATE \(name) SET \(pairsStr) WHERE \(primaryKey) = ?"
