@@ -16,8 +16,6 @@
 		<string>github.com:mathcamp/prototypes.git</string>
 		<key>e9be9b72-b3e6-4f37-9d6e-35f2130026b9</key>
 		<string>svn+ssh://dakara.local/Library/Subversion/Repository/projects</string>
-		<key>e9be9b72-b3e6-4f37-9d6e-35f2130026b9++4042</key>
-		<string>svn+ssh://dakara.local/Library/Subversion/Repository/projects/iphone/HLModular</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>HLModular.xcworkspace</string>
@@ -26,15 +24,13 @@
 		<key>5950105999A8B2D6025791009DCE5347631E1539</key>
 		<string>..</string>
 		<key>CFEBFBA1A2CEADAF4AC5886D3252F5A73A9F775A</key>
-		<string>../../../gocode/src/github.com/mathcamp/prototypes</string>
+		<string>../../gocode/src/github.com/mathcamp/prototypes</string>
 		<key>e9be9b72-b3e6-4f37-9d6e-35f2130026b9</key>
-		<string>../../..</string>
-		<key>e9be9b72-b3e6-4f37-9d6e-35f2130026b9++4042</key>
-		<string>..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectRepositoryRootDictionary</key>
 	<dict>
-		<key>e9be9b72-b3e6-4f37-9d6e-35f2130026b9++4042</key>
+		<key>5950105999A8B2D6025791009DCE5347631E1539</key>
 		<string>svn+ssh://dakara.local/Library/Subversion/Repository/projects</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -42,7 +38,7 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>e9be9b72-b3e6-4f37-9d6e-35f2130026b9++4042</string>
+	<string>5950105999A8B2D6025791009DCE5347631E1539</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -51,13 +47,13 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>e9be9b72-b3e6-4f37-9d6e-35f2130026b9</string>
 			<key>IDESourceControlWCCName</key>
-			<string>..</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.subversion</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>e9be9b72-b3e6-4f37-9d6e-35f2130026b9++4042</string>
+			<string>5950105999A8B2D6025791009DCE5347631E1539</string>
 			<key>IDESourceControlWCCName</key>
 			<string>HLModular</string>
 		</dict>

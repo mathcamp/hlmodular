@@ -532,7 +532,7 @@ public class HLDB {
       var foundIds: [String: Bool] = [:]
       
       let selectQuery = "SELECT \(primaryKey) FROM \(name) WHERE \(primaryKey) in (\(placeholderListStr))"
-      NSLog("Upsert idList=\(idList) selectQuery=\(selectQuery)")
+      // NSLog("Upsert idList=\(idList) selectQuery=\(selectQuery)")
       db.query(selectQuery, args: idList).onSuccess { result in
        
         switch result {
@@ -547,33 +547,33 @@ public class HLDB {
               }
             }
         }
-      }
       
-      NSLog("Upsert numRows=\(rows.count) foundRows=\(foundIds)")
-      
-      if foundIds.count == 0 {
-        // Simple case: everything should be inserted
-        insert(rows).onSuccess { result in
-          p.success(result)
-        }
-      } else {
-        // Complex case: mixture of insert and update
-        var insertRows: [Row] = []
-        var updateRows: [Row] = []
+        // NSLog("Upsert numRows=\(rows.count) foundRows=\(foundIds)")
         
-        for row in rows {
-          if let rowId = row.fields[primaryKey] as? String {
-            if let foundRowId = foundIds[rowId] {
-              updateRows.append(row)
-            } else {
-              insertRows.append(row)
+        if foundIds.count == 0 {
+          // Simple case: everything should be inserted
+          self.insert(rows).onSuccess { result in
+            p.success(result)
+          }
+        } else {
+          // Complex case: mixture of insert and update
+          var insertRows: [Row] = []
+          var updateRows: [Row] = []
+          
+          for row in rows {
+            if let rowId = row.fields[self.primaryKey] as? String {
+              if let foundRowId = foundIds[rowId] {
+                updateRows.append(row)
+              } else {
+                insertRows.append(row)
+              }
             }
           }
-        }
-        NSLog("Upsert insertRows=\(insertRows.count) updateRows=\(updateRows.count)")
-        
-        self.insertAndUpdate(insertRows, updateRows: updateRows).onSuccess { result in
-          p.success(result)
+          // NSLog("Upsert insertRows=\(insertRows.count) updateRows=\(updateRows.count)")
+          
+          self.insertAndUpdate(insertRows, updateRows: updateRows).onSuccess { result in
+            p.success(result)
+          }
         }
       }
       
