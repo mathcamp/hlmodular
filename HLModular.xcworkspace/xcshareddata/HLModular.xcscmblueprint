@@ -1,0 +1,88 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "e9be9b72-b3e6-4f37-9d6e-35f2130026b9++4042+++81FC0E8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "e9be9b72-b3e6-4f37-9d6e-35f2130026b9++4042+++81FC0E8" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CFEBFBA1A2CEADAF4AC5886D3252F5A73A9F775A+++5F4FA3B" : 0,
+    "51B210D0D41486D3ADD6940D57E4480BBD4DE4C5+++1C72ED7" : 0,
+    "e9be9b72-b3e6-4f37-9d6e-35f2130026b9+++86623AB" : 0,
+    "5950105999A8B2D6025791009DCE5347631E1539+++ED43146" : 0,
+    "93608FFF008CD82ADDFA850BB9C1630FA754586F+++7B3A534" : 0,
+    "5950105999A8B2D6025791009DCE5347631E1539+++51096AE" : 0,
+    "93608FFF008CD82ADDFA850BB9C1630FA754586F+++4888DEB" : 0,
+    "CFEBFBA1A2CEADAF4AC5886D3252F5A73A9F775A+++CB67A67" : 0,
+    "e9be9b72-b3e6-4f37-9d6e-35f2130026b9++4042+++81FC0E8" : 0,
+    "51B210D0D41486D3ADD6940D57E4480BBD4DE4C5+++AE61D29" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C93E755E-666A-4E30-A0B9-947F8BEE3329",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CFEBFBA1A2CEADAF4AC5886D3252F5A73A9F775A+++5F4FA3B" : "gocode\/src\/github.com\/mathcamp\/prototypes",
+    "51B210D0D41486D3ADD6940D57E4480BBD4DE4C5+++1C72ED7" : "gocode\/src\/github.com\/mathcamp\/prototypes\/thirdparty\/ReactiveCocoa",
+    "e9be9b72-b3e6-4f37-9d6e-35f2130026b9+++86623AB" : "",
+    "5950105999A8B2D6025791009DCE5347631E1539+++ED43146" : "HLModular",
+    "93608FFF008CD82ADDFA850BB9C1630FA754586F+++7B3A534" : "..\/gocode\/src\/github.com\/mathcamp\/prototypes\/thirdparty\/BrightFutures",
+    "5950105999A8B2D6025791009DCE5347631E1539+++51096AE" : "HLModular",
+    "93608FFF008CD82ADDFA850BB9C1630FA754586F+++4888DEB" : "gocode\/src\/github.com\/mathcamp\/prototypes\/thirdparty\/BrightFutures",
+    "CFEBFBA1A2CEADAF4AC5886D3252F5A73A9F775A+++CB67A67" : "..\/gocode\/src\/github.com\/mathcamp\/prototypes",
+    "e9be9b72-b3e6-4f37-9d6e-35f2130026b9++4042+++81FC0E8" : "..",
+    "51B210D0D41486D3ADD6940D57E4480BBD4DE4C5+++AE61D29" : "..\/gocode\/src\/github.com\/mathcamp\/prototypes\/thirdparty\/ReactiveCocoa"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "HLModular",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "HLModular.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mathcamp\/ReactiveCocoa.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "51B210D0D41486D3ADD6940D57E4480BBD4DE4C5+++1C72ED7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mathcamp\/ReactiveCocoa.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "51B210D0D41486D3ADD6940D57E4480BBD4DE4C5+++AE61D29"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/dakara.local\/Library\/Subversion\/Repository\/projects",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5950105999A8B2D6025791009DCE5347631E1539+++51096AE"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/dakara.local\/Library\/Subversion\/Repository\/projects",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5950105999A8B2D6025791009DCE5347631E1539+++ED43146"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mathcamp\/BrightFutures.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "93608FFF008CD82ADDFA850BB9C1630FA754586F+++4888DEB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mathcamp\/BrightFutures.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "93608FFF008CD82ADDFA850BB9C1630FA754586F+++7B3A534"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mathcamp\/prototypes.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CFEBFBA1A2CEADAF4AC5886D3252F5A73A9F775A+++5F4FA3B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mathcamp\/prototypes.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CFEBFBA1A2CEADAF4AC5886D3252F5A73A9F775A+++CB67A67"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/dakara.local\/Library\/Subversion\/Repository\/projects",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "e9be9b72-b3e6-4f37-9d6e-35f2130026b9+++86623AB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/dakara.local\/Library\/Subversion\/Repository\/projects",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "e9be9b72-b3e6-4f37-9d6e-35f2130026b9++4042+++81FC0E8"
+    }
+  ]
+}

@@ -7,35 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		195F5C3B1B54469100AA0A01 /* HLDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C3A1B54469100AA0A01 /* HLDBTests.swift */; };
-		195F5C3C1B548E7200AA0A01 /* DBTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199177871B50CF6700019511 /* DBTable.swift */; };
 		195F5C3E1B548EAC00AA0A01 /* libPods-HLModular.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 195F5C3D1B548EAC00AA0A01 /* libPods-HLModular.a */; };
-		195F5C441B54902B00AA0A01 /* ExecutionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C3F1B54902B00AA0A01 /* ExecutionContext.swift */; };
-		195F5C451B54902B00AA0A01 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C401B54902B00AA0A01 /* Future.swift */; };
-		195F5C461B54902B00AA0A01 /* FutureUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C411B54902B00AA0A01 /* FutureUtils.swift */; };
-		195F5C471B54902B00AA0A01 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C421B54902B00AA0A01 /* Promise.swift */; };
-		195F5C481B54902B00AA0A01 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C431B54902B00AA0A01 /* Queue.swift */; };
-		195F5C491B54902F00AA0A01 /* ExecutionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C3F1B54902B00AA0A01 /* ExecutionContext.swift */; };
-		195F5C4A1B54902F00AA0A01 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C401B54902B00AA0A01 /* Future.swift */; };
-		195F5C4B1B54902F00AA0A01 /* FutureUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C411B54902B00AA0A01 /* FutureUtils.swift */; };
-		195F5C4C1B54902F00AA0A01 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C421B54902B00AA0A01 /* Promise.swift */; };
-		195F5C4D1B54902F00AA0A01 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C431B54902B00AA0A01 /* Queue.swift */; };
-		195F5C541B55A47000AA0A01 /* HLDBEntityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195F5C531B55A47000AA0A01 /* HLDBEntityTests.swift */; };
 		1980CB031B5733C600A42B19 /* photos_mine.json in Resources */ = {isa = PBXBuildFile; fileRef = 1980CB021B5733C600A42B19 /* photos_mine.json */; };
-		1980CB041B5734E800A42B19 /* RollPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1991777F1B50B04400019511 /* RollPhoto.swift */; };
-		1980CB061B5734EB00A42B19 /* RollPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1991777F1B50B04400019511 /* RollPhoto.swift */; };
-		199177881B50CF6700019511 /* DBTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199177871B50CF6700019511 /* DBTable.swift */; };
+		19B5A6891BA203E200D3D1E8 /* Semaphore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5A6821BA203E200D3D1E8 /* Semaphore.swift */; };
+		19B5A68A1BA203E200D3D1E8 /* InvalidationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5A6831BA203E200D3D1E8 /* InvalidationToken.swift */; };
+		19B5A68B1BA203E200D3D1E8 /* ExecutionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5A6841BA203E200D3D1E8 /* ExecutionContext.swift */; };
+		19B5A68C1BA203E200D3D1E8 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5A6851BA203E200D3D1E8 /* Future.swift */; };
+		19B5A68D1BA203E200D3D1E8 /* FutureUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5A6861BA203E200D3D1E8 /* FutureUtils.swift */; };
+		19B5A68E1BA203E200D3D1E8 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5A6871BA203E200D3D1E8 /* Promise.swift */; };
+		19B5A68F1BA203E200D3D1E8 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5A6881BA203E200D3D1E8 /* Queue.swift */; };
+		19B5A6951BA2040B00D3D1E8 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5A6911BA2040B00D3D1E8 /* Box.swift */; };
+		19B5A6961BA2040B00D3D1E8 /* BoxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5A6921BA2040B00D3D1E8 /* BoxType.swift */; };
+		19B5A6971BA2040B00D3D1E8 /* MutableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5A6931BA2040B00D3D1E8 /* MutableBox.swift */; };
+		19B5A6981BA2040B00D3D1E8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5A6941BA2040B00D3D1E8 /* Result.swift */; };
+		19B5A6A01BA38C1D00D3D1E8 /* TidyCacheModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5A69F1BA38C1C00D3D1E8 /* TidyCacheModule.swift */; };
+		19B5A6A71BA3B2B800D3D1E8 /* HLModularGeneric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B5A6A61BA3B2B800D3D1E8 /* HLModularGeneric.swift */; };
 		19E0BB601B4763C100967E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB5F1B4763C100967E9F /* AppDelegate.swift */; };
 		19E0BB621B4763C100967E9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB611B4763C100967E9F /* ViewController.swift */; };
 		19E0BB651B4763C100967E9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19E0BB631B4763C100967E9F /* Main.storyboard */; };
 		19E0BB671B4763C100967E9F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19E0BB661B4763C100967E9F /* Images.xcassets */; };
 		19E0BB6A1B4763C100967E9F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19E0BB681B4763C100967E9F /* LaunchScreen.xib */; };
 		19E0BB801B4763E300967E9F /* HLModular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB7F1B4763E300967E9F /* HLModular.swift */; };
-		19E0BB821B478E4400967E9F /* PhotosModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB811B478E4400967E9F /* PhotosModule.swift */; };
 		19E0BB841B47952F00967E9F /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E0BB831B47952F00967E9F /* Photos.framework */; };
-		19E0BB861B47A4E100967E9F /* FaceDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB851B47A4E100967E9F /* FaceDetector.swift */; };
-		19E0BB881B47A51E00967E9F /* FaceDetectorModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB871B47A51E00967E9F /* FaceDetectorModule.swift */; };
-		19E0BB8A1B47AB9B00967E9F /* AssetsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E0BB891B47AB9B00967E9F /* AssetsModule.swift */; };
 		DCEBC549EA1633FCB64C4564 /* libPods-HLModular.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BD80413EAA6E4BAB293923 /* libPods-HLModular.a */; };
 /* End PBXBuildFile section */
 
@@ -50,17 +43,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		195F5C3A1B54469100AA0A01 /* HLDBTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HLDBTests.swift; sourceTree = "<group>"; };
 		195F5C3D1B548EAC00AA0A01 /* libPods-HLModular.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPods-HLModular.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		195F5C3F1B54902B00AA0A01 /* ExecutionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExecutionContext.swift; sourceTree = "<group>"; };
-		195F5C401B54902B00AA0A01 /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
-		195F5C411B54902B00AA0A01 /* FutureUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FutureUtils.swift; sourceTree = "<group>"; };
-		195F5C421B54902B00AA0A01 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
-		195F5C431B54902B00AA0A01 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		195F5C531B55A47000AA0A01 /* HLDBEntityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HLDBEntityTests.swift; sourceTree = "<group>"; };
 		1980CB021B5733C600A42B19 /* photos_mine.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = photos_mine.json; sourceTree = "<group>"; };
-		1991777F1B50B04400019511 /* RollPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollPhoto.swift; sourceTree = "<group>"; };
-		199177871B50CF6700019511 /* DBTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBTable.swift; sourceTree = "<group>"; };
+		19B5A6821BA203E200D3D1E8 /* Semaphore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Semaphore.swift; path = ../../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/BrightFutures/BrightFutures/Semaphore.swift; sourceTree = "<group>"; };
+		19B5A6831BA203E200D3D1E8 /* InvalidationToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InvalidationToken.swift; path = ../../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/BrightFutures/BrightFutures/InvalidationToken.swift; sourceTree = "<group>"; };
+		19B5A6841BA203E200D3D1E8 /* ExecutionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExecutionContext.swift; path = ../../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/BrightFutures/BrightFutures/ExecutionContext.swift; sourceTree = "<group>"; };
+		19B5A6851BA203E200D3D1E8 /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Future.swift; path = ../../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/BrightFutures/BrightFutures/Future.swift; sourceTree = "<group>"; };
+		19B5A6861BA203E200D3D1E8 /* FutureUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FutureUtils.swift; path = ../../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/BrightFutures/BrightFutures/FutureUtils.swift; sourceTree = "<group>"; };
+		19B5A6871BA203E200D3D1E8 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Promise.swift; path = ../../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/BrightFutures/BrightFutures/Promise.swift; sourceTree = "<group>"; };
+		19B5A6881BA203E200D3D1E8 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Queue.swift; path = ../../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/BrightFutures/BrightFutures/Queue.swift; sourceTree = "<group>"; };
+		19B5A6901BA2040B00D3D1E8 /* Box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Box.h; path = ../../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/ReactiveCocoa/Box.h; sourceTree = "<group>"; };
+		19B5A6911BA2040B00D3D1E8 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Box.swift; path = ../../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/ReactiveCocoa/Box.swift; sourceTree = "<group>"; };
+		19B5A6921BA2040B00D3D1E8 /* BoxType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoxType.swift; path = ../../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/ReactiveCocoa/BoxType.swift; sourceTree = "<group>"; };
+		19B5A6931BA2040B00D3D1E8 /* MutableBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MutableBox.swift; path = ../../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/ReactiveCocoa/MutableBox.swift; sourceTree = "<group>"; };
+		19B5A6941BA2040B00D3D1E8 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = ../../../../gocode/src/github.com/mathcamp/prototypes/thirdparty/ReactiveCocoa/Result.swift; sourceTree = "<group>"; };
+		19B5A69F1BA38C1C00D3D1E8 /* TidyCacheModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TidyCacheModule.swift; sourceTree = "<group>"; };
+		19B5A6A11BA38E8700D3D1E8 /* ContactsModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsModule.swift; sourceTree = "<group>"; };
+		19B5A6A61BA3B2B800D3D1E8 /* HLModularGeneric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HLModularGeneric.swift; sourceTree = "<group>"; };
 		19D12A431B50954B00868C0E /* HLModular-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HLModular-Bridging-Header.h"; sourceTree = "<group>"; };
 		19E0BB5A1B4763C100967E9F /* HLModular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HLModular.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19E0BB5E1B4763C100967E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -107,11 +106,18 @@
 		1991778C1B5190A600019511 /* BrightFutures */ = {
 			isa = PBXGroup;
 			children = (
-				195F5C3F1B54902B00AA0A01 /* ExecutionContext.swift */,
-				195F5C401B54902B00AA0A01 /* Future.swift */,
-				195F5C411B54902B00AA0A01 /* FutureUtils.swift */,
-				195F5C421B54902B00AA0A01 /* Promise.swift */,
-				195F5C431B54902B00AA0A01 /* Queue.swift */,
+				19B5A6901BA2040B00D3D1E8 /* Box.h */,
+				19B5A6911BA2040B00D3D1E8 /* Box.swift */,
+				19B5A6921BA2040B00D3D1E8 /* BoxType.swift */,
+				19B5A6931BA2040B00D3D1E8 /* MutableBox.swift */,
+				19B5A6941BA2040B00D3D1E8 /* Result.swift */,
+				19B5A6821BA203E200D3D1E8 /* Semaphore.swift */,
+				19B5A6831BA203E200D3D1E8 /* InvalidationToken.swift */,
+				19B5A6841BA203E200D3D1E8 /* ExecutionContext.swift */,
+				19B5A6851BA203E200D3D1E8 /* Future.swift */,
+				19B5A6861BA203E200D3D1E8 /* FutureUtils.swift */,
+				19B5A6871BA203E200D3D1E8 /* Promise.swift */,
+				19B5A6881BA203E200D3D1E8 /* Queue.swift */,
 			);
 			path = BrightFutures;
 			sourceTree = "<group>";
@@ -120,9 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				1991778C1B5190A600019511 /* BrightFutures */,
-				199177871B50CF6700019511 /* DBTable.swift */,
 				19D12A431B50954B00868C0E /* HLModular-Bridging-Header.h */,
-				1991777F1B50B04400019511 /* RollPhoto.swift */,
 			);
 			name = ClientDB;
 			sourceTree = "<group>";
@@ -159,7 +163,10 @@
 				19E0BB681B4763C100967E9F /* LaunchScreen.xib */,
 				19E0BB5D1B4763C100967E9F /* Supporting Files */,
 				19E0BB7F1B4763E300967E9F /* HLModular.swift */,
+				19B5A6A61BA3B2B800D3D1E8 /* HLModularGeneric.swift */,
 				19E0BB891B47AB9B00967E9F /* AssetsModule.swift */,
+				19B5A69F1BA38C1C00D3D1E8 /* TidyCacheModule.swift */,
+				19B5A6A11BA38E8700D3D1E8 /* ContactsModule.swift */,
 				19E0BB811B478E4400967E9F /* PhotosModule.swift */,
 				19E0BB871B47A51E00967E9F /* FaceDetectorModule.swift */,
 				19E0BB851B47A4E100967E9F /* FaceDetector.swift */,
@@ -178,8 +185,6 @@
 		19E0BB721B4763C200967E9F /* HLModularTests */ = {
 			isa = PBXGroup;
 			children = (
-				195F5C3A1B54469100AA0A01 /* HLDBTests.swift */,
-				195F5C531B55A47000AA0A01 /* HLDBEntityTests.swift */,
 				19E0BB751B4763C200967E9F /* HLModularTests.swift */,
 				19E0BB731B4763C200967E9F /* Supporting Files */,
 				1980CB021B5733C600A42B19 /* photos_mine.json */,
@@ -350,20 +355,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19E0BB861B47A4E100967E9F /* FaceDetector.swift in Sources */,
-				1980CB061B5734EB00A42B19 /* RollPhoto.swift in Sources */,
-				199177881B50CF6700019511 /* DBTable.swift in Sources */,
-				19E0BB821B478E4400967E9F /* PhotosModule.swift in Sources */,
-				19E0BB881B47A51E00967E9F /* FaceDetectorModule.swift in Sources */,
-				195F5C481B54902B00AA0A01 /* Queue.swift in Sources */,
+				19B5A6981BA2040B00D3D1E8 /* Result.swift in Sources */,
+				19B5A6A01BA38C1D00D3D1E8 /* TidyCacheModule.swift in Sources */,
+				19B5A68F1BA203E200D3D1E8 /* Queue.swift in Sources */,
+				19B5A6961BA2040B00D3D1E8 /* BoxType.swift in Sources */,
 				19E0BB801B4763E300967E9F /* HLModular.swift in Sources */,
-				195F5C461B54902B00AA0A01 /* FutureUtils.swift in Sources */,
+				19B5A68D1BA203E200D3D1E8 /* FutureUtils.swift in Sources */,
+				19B5A6A71BA3B2B800D3D1E8 /* HLModularGeneric.swift in Sources */,
+				19B5A6971BA2040B00D3D1E8 /* MutableBox.swift in Sources */,
+				19B5A68A1BA203E200D3D1E8 /* InvalidationToken.swift in Sources */,
 				19E0BB621B4763C100967E9F /* ViewController.swift in Sources */,
-				19E0BB8A1B47AB9B00967E9F /* AssetsModule.swift in Sources */,
-				195F5C441B54902B00AA0A01 /* ExecutionContext.swift in Sources */,
-				195F5C451B54902B00AA0A01 /* Future.swift in Sources */,
+				19B5A68E1BA203E200D3D1E8 /* Promise.swift in Sources */,
+				19B5A6951BA2040B00D3D1E8 /* Box.swift in Sources */,
+				19B5A68B1BA203E200D3D1E8 /* ExecutionContext.swift in Sources */,
+				19B5A68C1BA203E200D3D1E8 /* Future.swift in Sources */,
+				19B5A6891BA203E200D3D1E8 /* Semaphore.swift in Sources */,
 				19E0BB601B4763C100967E9F /* AppDelegate.swift in Sources */,
-				195F5C471B54902B00AA0A01 /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,15 +378,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				195F5C4B1B54902F00AA0A01 /* FutureUtils.swift in Sources */,
-				195F5C4D1B54902F00AA0A01 /* Queue.swift in Sources */,
-				195F5C3C1B548E7200AA0A01 /* DBTable.swift in Sources */,
-				195F5C491B54902F00AA0A01 /* ExecutionContext.swift in Sources */,
-				195F5C4A1B54902F00AA0A01 /* Future.swift in Sources */,
-				195F5C3B1B54469100AA0A01 /* HLDBTests.swift in Sources */,
-				1980CB041B5734E800A42B19 /* RollPhoto.swift in Sources */,
-				195F5C4C1B54902F00AA0A01 /* Promise.swift in Sources */,
-				195F5C541B55A47000AA0A01 /* HLDBEntityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

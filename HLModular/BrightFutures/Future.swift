@@ -39,7 +39,7 @@ public func future<T>(context c: ExecutionContext = Queue.global, task: (inout N
     return promise.future
 }
 
-public func future<T>(context c: ExecutionContext = Queue.global, task: @autoclosure () -> T?) -> Future<T> {
+public func future<T>(context c: ExecutionContext = Queue.global, @autoclosure task: () -> T?) -> Future<T> {
     return future(context: c) { error in
         return task()
     }
@@ -64,14 +64,14 @@ public class Future<T> {
     
     public func succeeded(fn: (T -> ())? = nil) -> Bool {
         if let res = self.result {
-            return res.succeeded(fn)
+            return res.succeeded(fn: fn)
         }
         return false
     }
     
     public func failed(fn: (NSError -> ())? = nil) -> Bool {
         if let res = self.result {
-            return res.failed(fn)
+            return res.failed(fn: fn)
         }
         return false
     }
@@ -216,7 +216,7 @@ public class Future<T> {
     }
 
     public func flatMap<U>(f: T -> Future<U>) -> Future<U> {
-        return self.flatMap(context: self.defaultCallbackExecutionContext, f)
+        return self.flatMap(context: self.defaultCallbackExecutionContext, f: f)
     }
 
     public func flatMap<U>(context c: ExecutionContext, f: T -> Future<U>) -> Future<U> {
@@ -233,7 +233,7 @@ public class Future<T> {
     }
 
     public func map<U>(f: (T, inout NSError?) -> U?) -> Future<U> {
-        return self.map(context: self.defaultCallbackExecutionContext, f)
+        return self.map(context: self.defaultCallbackExecutionContext, f: f)
     }
 
     public func map<U>(context c: ExecutionContext, f: (T, inout NSError?) -> U?) -> Future<U> {
@@ -275,7 +275,7 @@ public class Future<T> {
     }
 
     public func onSuccess(callback: SuccessCallback) -> Future<T> {
-        return self.onSuccess(context: self.defaultCallbackExecutionContext, callback)
+        return self.onSuccess(context: self.defaultCallbackExecutionContext, callback: callback)
     }
     
     public func onSuccess(context c: ExecutionContext, callback: SuccessCallback) -> Future<T> {
@@ -292,7 +292,7 @@ public class Future<T> {
     }
     
     public func onFailure(callback: FailureCallback) -> Future<T> {
-        return self.onFailure(context: self.defaultCallbackExecutionContext, callback)
+        return self.onFailure(context: self.defaultCallbackExecutionContext, callback: callback)
     }
     
     public func onFailure(context c: ExecutionContext, callback: FailureCallback) -> Future<T> {
@@ -308,7 +308,7 @@ public class Future<T> {
     }
     
     public func recover(task: (NSError) -> T) -> Future<T> {
-        return self.recover(context: self.defaultCallbackExecutionContext, task)
+        return self.recover(context: self.defaultCallbackExecutionContext, task: task)
     }
     
     public func recover(context c: ExecutionContext, task: (NSError) -> T) -> Future<T> {

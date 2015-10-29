@@ -110,40 +110,8 @@ public class HLModular {
   }
   
   public class Data {
-    var data: AnyObject?
-    init(_ data: AnyObject? = nil) {
-      self.data = data
-    }
   }
-  
-  public class Job {
-    let usage: ResourceUsage
-    let moduleId: String
-    let priority: Priority
-    var dataIn: Data?
-    var dataOut: Data?
-    var runner: Runner?
-    var module: Module?
     
-    public init(moduleId: String, usage: ResourceUsage, priority: Priority = .Low) {
-      self.moduleId = moduleId
-      self.usage = usage
-      self.priority = priority
-    }
-    
-    func run() {
-      // override in subclass
-    }
-    
-    func run(job: Job) -> Bool {
-      if let r = runner {
-        r.run(job)
-        return true
-      }
-      return false
-    }
-  }
-  
   public class Runner {
     var modules: [String: Module] = [:]
     private let moduleQueue = dispatch_queue_create("hlmodular.module.queue", nil)
@@ -164,10 +132,8 @@ public class HLModular {
       }
     }
     
-    public func run(job: Job) -> Bool {
-      job.runner = self
-      if let module = modules[job.moduleId] {
-        job.module = module
+    public func run(job: HLModularRunnable) -> Bool {
+      if let module = modules[job.getModuleId()] {
         let concurrency = module.concurrency
         var q = concurrentJobQueue
         switch concurrency {
@@ -182,13 +148,13 @@ public class HLModular {
         switch module.state {
           case .Running:
             dispatch_async(q) {
-              job.run()
+              job.run(self, module: module)
             }
           
           default:
             module.start(moduleQueue, completion: { module in
               dispatch_async(q) {
-                job.run()
+                job.run(self, module: module)
               }
             })
         }

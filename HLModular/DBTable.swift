@@ -9,8 +9,8 @@
 import Foundation
 
 public func ==(lhs: HLDB.Table.Row, rhs: HLDB.Table.Row) -> Bool {
-  var leftKeys: [String] = lhs.fields.allKeys as [String]
-  var rightKeys: [String] = rhs.fields.allKeys as [String]
+  var leftKeys: [String] = lhs.fields.allKeys as! [String]
+  var rightKeys: [String] = rhs.fields.allKeys as! [String]
   if leftKeys.count != rightKeys.count { return false }
   leftKeys.sort { $0 < $1 }
   rightKeys.sort { $0 < $1 }
@@ -78,7 +78,7 @@ public class HLDB {
     }
     
     public class func pathForDBFile(fileName: String) -> String {
-      let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+      let documentsFolder = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
       return documentsFolder.stringByAppendingPathComponent(fileName)
     }
     
@@ -105,7 +105,7 @@ public class HLDB {
       getQueue()?.inDatabase() {
         db in
         
-        if !db.executeUpdate(query, withArgumentsInArray:args) {
+        if !db.executeUpdate(query, withArgumentsInArray:args as [AnyObject]) {
           println("DB Query \(self.fileName) failed: \(db.lastErrorMessage())")
           p.success(Result.Error(Int(db.lastErrorCode()), db.lastErrorMessage()))
           return
@@ -124,7 +124,7 @@ public class HLDB {
         
         for query in queries {
           //NSLog("Running query=\(query.query) argCount=\(query.args.count) args=\(query.args)")
-          if !db.executeUpdate(query.query, withArgumentsInArray:query.args) {
+          if !db.executeUpdate(query.query, withArgumentsInArray:query.args as [AnyObject]) {
             rollback.initialize(true)
             println("DB Query \(self.fileName) failed: \(db.lastErrorMessage())")
             p.success(Result.Error(Int(db.lastErrorCode()), db.lastErrorMessage()))
@@ -143,7 +143,7 @@ public class HLDB {
       getQueue()?.inDatabase() {
         db in
         
-        if let rs = db.executeQuery(query, withArgumentsInArray:args) {
+        if let rs = db.executeQuery(query, withArgumentsInArray:args as [AnyObject]) {
           var items = [NSDictionary]()
           while rs.next() {
             items.append(rs.resultDictionary())
@@ -192,7 +192,7 @@ public class HLDB {
       var error: NSError? = nil
       if let data = NSJSONSerialization.dataWithJSONObject(obj, options: NSJSONWritingOptions(0), error: &error) {
         if let s = NSString(data: data, encoding: NSUTF8StringEncoding) {
-          return s
+          return s as String
         }
       }
       return ""
@@ -401,7 +401,7 @@ public class HLDB {
         fields.append("\(field.name) \(fieldType)\(uniqueStr)\(fieldDefault)")
       }
       let fieldsStr = ",".join(fields)
-      return "CREATE TABLE \(name) (\(fieldsStr));"
+      return "CREATE TABLE IF NOT EXISTS \(name) (\(fieldsStr));"
     }
     
     public func create() {
@@ -582,7 +582,7 @@ public class HLDB {
     
     public func select(whereStr: String = "") -> Future<DB.Result> {
       var finalWhereString = whereStr
-      if countElements(finalWhereString) > 0 {
+      if count(finalWhereString) > 0 {
         finalWhereString = " WHERE \(whereStr)"
       }
       let query = "SELECT * FROM \(name)\(whereStr)"

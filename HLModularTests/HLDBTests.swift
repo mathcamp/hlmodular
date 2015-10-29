@@ -105,7 +105,7 @@ class HLDBTests: XCTestCase {
     }
     
     // Loop until the expectation is fulfilled
-    waitForExpectationsWithTimeout(1, { error in
+    waitForExpectationsWithTimeout(1, handler: { error in
       XCTAssertNil(error, "Error")
     })
   }
@@ -187,7 +187,7 @@ class HLDBTests: XCTestCase {
     }
     
     // Loop until the expectation is fulfilled
-    waitForExpectationsWithTimeout(1, { error in
+    waitForExpectationsWithTimeout(1, handler: { error in
       XCTAssertNil(error, "Error")
     })
   }
@@ -282,7 +282,7 @@ class HLDBTests: XCTestCase {
     }
     
     // Loop until the expectation is fulfilled
-    waitForExpectationsWithTimeout(1, { error in
+    waitForExpectationsWithTimeout(1, handler: { error in
       XCTAssertNil(error, "Error")
     })
   }
@@ -351,7 +351,7 @@ class HLDBTests: XCTestCase {
     }
     
     // Loop until the expectation is fulfilled
-    waitForExpectationsWithTimeout(1, { error in
+    waitForExpectationsWithTimeout(1, handler: { error in
       XCTAssertNil(error, "Error")
     })
   }
@@ -517,7 +517,7 @@ class HLDBTests: XCTestCase {
     }
 
     // Loop until the expectation is fulfilled
-    waitForExpectationsWithTimeout(1, { error in
+    waitForExpectationsWithTimeout(1, handler: { error in
       XCTAssertNil(error, "Error")
     })
   }
@@ -547,7 +547,7 @@ class HLDBTests: XCTestCase {
       }
       
       // Loop until the expectation is fulfilled
-      self.waitForExpectationsWithTimeout(10, { error in
+      self.waitForExpectationsWithTimeout(10, handler: { error in
         XCTAssertNil(error, "Error")
       })
     }

@@ -92,7 +92,7 @@ public class FetchPhotosJob: HLModular.Job {
     fetchOptions.predicate = NSPredicate(format: "creationDate < %@", before)
 
     for obj in PHAsset.fetchAssetsWithMediaType(.Image, options: fetchOptions) {
-      let asset = obj as PHAsset
+      let asset = obj as! PHAsset
       imageAssets.append(asset)
 
       // start the job to process the asset

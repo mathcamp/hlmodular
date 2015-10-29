@@ -75,7 +75,7 @@ class HLDBEntityTests: XCTestCase {
     }
     
     // Loop until the expectation is fulfilled
-    waitForExpectationsWithTimeout(1, { error in
+    waitForExpectationsWithTimeout(1, handler: { error in
       XCTAssertNil(error, "Error")
     })
   }
@@ -156,7 +156,7 @@ class HLDBEntityTests: XCTestCase {
     }
     
     // Loop until the expectation is fulfilled
-    waitForExpectationsWithTimeout(1, { error in
+    waitForExpectationsWithTimeout(1, handler: { error in
       XCTAssertNil(error, "Error")
     })
   }
@@ -294,7 +294,7 @@ class HLDBEntityTests: XCTestCase {
     }
     
     // Loop until the expectation is fulfilled
-    waitForExpectationsWithTimeout(1, { error in
+    waitForExpectationsWithTimeout(1, handler: { error in
       XCTAssertNil(error, "Error")
     })
   }
